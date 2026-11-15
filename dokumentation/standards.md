@@ -29,3 +29,8 @@ Das zentrale Portal enthält die Browser-Versionen bzw. Links zu ihnen und verwe
 
 ## Stand
 Die Portalseite ist ein Grundgerüst, kein Nachweis abgeschlossener Tests.
+
+## Zuordnung und Katalog (ab November 2026)
+Die Datei `daten/simulationen.json` verwaltet jede Simulation einmalig. `thema` ist der fachliche Themenbereich; `klassenstufen` ist eine Liste aus 7, 8, 9, 10, JG1, JG2; `bildungsgaenge` eine unabhängige Liste aus G8 und G9. Solange die didaktische Zuordnung nicht geprüft wurde, bleiben die Listen leer und werden **nicht** automatisch erschlossen. `python_url` und `html_url` sind voneinander unabhängige Felder. Für bestehende GeoGebra-Prototypen dient `webprojekt_url` als Verweis, ohne eine geprüfte HTML-Version zu suggerieren.
+
+Neue Themen für die unteren Klassen können später ergänzt werden; die fünf beschlossenen Kursstufen-Themen bleiben bestehen.
