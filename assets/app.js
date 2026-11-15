@@ -1,0 +1,15 @@
+const THEMEN=["Elektrische und magnetische Felder","Induktion","Mechanische Schwingungen und Wellen","Elektromagnetische Schwingungen und Wellen","Atom- und Quantenphysik","Weitere Themen"];
+let katalog=[];
+const el=(id)=>document.getElementById(id);
+function render(){const modus=document.querySelector('input[name=ansicht]:checked').value,stufe=el("klasse").value,gang=el("bildungsgang").value,fach=el("thema").value,q=el("suche").value.toLocaleLowerCase("de");
+const gefunden=katalog.filter(s=>(fach==="alle"||s.thema===fach)&&(!stufe||s.klassenstufen.includes(stufe))&&(!gang||s.bildungsgaenge.includes(gang))&&(s.titel+" "+s.beschreibung+" "+s.thema).toLocaleLowerCase("de").includes(q));
+const bereiche=modus==="klassen"?[...new Set(gefunden.flatMap(s=>s.klassenstufen))].sort((a,b)=>a.localeCompare(b,"de",{numeric:true})):THEMEN;
+const ziel=el("ergebnisse");ziel.replaceChildren();el("anzahl").textContent=gefunden.length+" Einträge";
+if(!gefunden.length&&modus==="klassen"){const p=document.createElement("p");p.className="empty";p.textContent="Noch keine geprüften Klassenstufen-Zuordnungen vorhanden. Bitte auf „Nach Themengebiet“ wechseln; die Zuordnungen werden später ergänzt.";ziel.append(p);return}
+for(const name of bereiche){const section=document.createElement("section");section.className="topic";const h=document.createElement("h2");h.textContent=name;section.append(h);
+const items=gefunden.filter(s=>modus==="klassen"?s.klassenstufen.includes(name):s.thema===name);
+if(!items.length){const p=document.createElement("p");p.className="empty";p.textContent="Simulationen in Vorbereitung";section.append(p)}
+else{const cards=document.createElement("div");cards.className="grid";for(const s of items){const card=document.createElement("article");card.className="card";const title=document.createElement("h3");title.textContent=s.titel;card.append(title);const desc=document.createElement("p");desc.textContent=s.beschreibung;card.append(desc);const meta=document.createElement("p");meta.className="meta";meta.textContent="Klassenstufen: "+(s.klassenstufen.join(", ")||"noch nicht zugeordnet")+" · Bildungsgang: "+(s.bildungsgaenge.join(", ")||"noch nicht geprüft");card.append(meta);const links=document.createElement("div");links.className="links";for(const [label,url] of [["Python",s.python_url],["HTML",s.html_url],["Webprojekt (Prototyp)",s.webprojekt_url]])if(url){const a=document.createElement("a");a.href=url;a.textContent=label;a.target="_blank";a.rel="noopener noreferrer";links.append(a)}card.append(links);cards.append(card)}section.append(cards)}ziel.append(section)}
+}
+async function start(){for(const input of document.querySelectorAll("input,select"))input.addEventListener("input",render);try{const r=await fetch("daten/simulationen.json",{cache:"no-cache"});if(!r.ok)throw Error("HTTP "+r.status);katalog=(await r.json()).simulationen;render()}catch(e){el("ergebnisse").textContent="Der Simulationskatalog konnte nicht geladen werden. Bitte die Seite über einen Webserver öffnen."}}
+start();
