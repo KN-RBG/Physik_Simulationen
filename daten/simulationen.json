@@ -42,12 +42,13 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Physik_gleichlaufende_Wellen",
-      "html_url": null,
+      "html_url": "simulationen/gleichlaufende-wellen/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Python- und Web-Version mit exakten d=0,5λ₀/1,5λ₀-Abstandstasten, Hörpunkt, Interferenz, Schwebung und optionalem Audio; grafischer/akustischer Test auf Zielgeräten ausstehend.",
       "python_public": true,
-      "python_download_url": "downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py"
+      "python_download_url": "downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py",
+      "qr_url": "assets/qr/gleichlaufende-wellen.svg"
     },
     {
       "id": "mehrfachspalt",
