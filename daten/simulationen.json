@@ -112,7 +112,8 @@
       "status": "Browser-Version zur Erprobung",
       "hinweis": "Erste HTML-Version mit synchronem LC-Schwingkreis und Federschwinger, Energieverteilung, Phasenregler, Tempo und Viertelperiodenschritten. Fachlicher und visueller Vergleichstest mit Python-Version noch ausstehend.",
       "python_public": true,
-      "python_download_url": "downloads/python/schwingkreis-vergleich/schwingkreis_vergleich.py"
+      "python_download_url": "downloads/python/schwingkreis-vergleich/schwingkreis_vergleich.py",
+      "qr_url": "assets/qr/schwingkreis-vergleich.svg"
     },
     {
       "id": "fourier",
