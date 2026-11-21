@@ -1,8 +1,8 @@
-const THEMEN=["Elektrische und magnetische Felder","Induktion","Mechanische Schwingungen und Wellen","Elektromagnetische Schwingungen und Wellen","Interferenz","Atom- und Quantenphysik","Weitere Themen"];
+const THEMEN=["Elektrische und magnetische Felder","Induktion","Mechanische Schwingungen und Wellen","Elektromagnetische Schwingungen und Wellen","Interferenz","Atom- und Quantenphysik"];
 let katalog=[];
 const el=(id)=>document.getElementById(id);
 function render(){const modus=document.querySelector('input[name=ansicht]:checked').value,stufe=el("klasse").value,gang=el("bildungsgang").value,fach=el("thema").value,q=el("suche").value.toLocaleLowerCase("de");
-const gefunden=katalog.filter(s=>(fach==="alle"||s.thema===fach)&&(!stufe||s.klassenstufen.includes(stufe))&&(!gang||s.bildungsgaenge.includes(gang))&&(s.titel+" "+s.beschreibung+" "+s.thema).toLocaleLowerCase("de").includes(q));
+const gefunden=katalog.filter(s=>s.thema!=="Weitere Themen"&&(fach==="alle"||s.thema===fach)&&(!stufe||s.klassenstufen.includes(stufe))&&(!gang||s.bildungsgaenge.includes(gang))&&(s.titel+" "+s.beschreibung+" "+s.thema).toLocaleLowerCase("de").includes(q));
 const bereiche=modus==="klassen"?[...new Set(gefunden.flatMap(s=>s.klassenstufen))].sort((a,b)=>a.localeCompare(b,"de",{numeric:true})):THEMEN;
 const ziel=el("ergebnisse");ziel.replaceChildren();el("anzahl").textContent=gefunden.length+" Einträge";
 if(!gefunden.length&&modus==="klassen"){const p=document.createElement("p");p.className="empty";p.textContent="Noch keine geprüften Klassenstufen-Zuordnungen vorhanden. Bitte auf „Nach Themengebiet“ wechseln; die Zuordnungen werden später ergänzt.";ziel.append(p);return}
