@@ -5,7 +5,7 @@ const N=2200,MAX=250,PI=Math.PI,$=id=>document.getElementById(id);
 let sourceR=new Float64Array(N),sourceI=new Float64Array(N);
 let coeffR=new Float64Array(N),coeffI=new Float64Array(N);
 let sorted=[],selected=[],reconR=new Float64Array(N),reconI=new Float64Array(N);
-let frame=0,running=false,raf=0,lastFrame=null,extents={minX:-4,maxX:4,minY:-2,maxY:2},scaleError=0;
+let frame=0,running=false,raf=0,lastFrame=null,frameFraction=0,extents={minX:-4,maxX:4,minY:-2,maxY:2},scaleError=0;
 function fft(r,i,inverse=false){
   const n=r.length;
   for(let a=1,b=0;a<n;a++){
@@ -133,7 +133,7 @@ function recompute(){
     sourceR=r;sourceI=i;
     [coeffR,coeffI]=dftBluestein(r,i);
     sorted=Array.from({length:N},(_,k)=>k).sort((a,b)=>Math.hypot(coeffR[b],coeffI[b])-Math.hypot(coeffR[a],coeffI[a])||a-b);
-    frame=0;selection();$("epicycle-error").textContent="";
+    frame=0;frameFraction=0;selection();$("epicycle-error").textContent="";
   }catch(e){$("epicycle-error").textContent=String(e.message||e);}
 }
 function selection(){
@@ -163,7 +163,7 @@ function selection(){
   draw();
 }
 function canvas(id){
-  const el=$(id),W=Number(el.getAttribute("width")),H=Number(el.getAttribute("height")),dpr=Math.min(devicePixelRatio||1,2.5);
+  const el=$(id),W=Number(el.getAttribute("width")),H=Number(el.getAttribute("height")),dpr=Math.min(window.devicePixelRatio||1,window.innerWidth<650?1.25:2);
   if(el.width!==Math.round(W*dpr)||el.height!==Math.round(H*dpr)){el.width=Math.round(W*dpr);el.height=Math.round(H*dpr);}
   const ctx=el.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,W,H);ctx.fillStyle="#fff";ctx.fillRect(0,0,W,H);
@@ -244,10 +244,18 @@ function xy(){
   ctx.fillStyle="#344b60";ctx.font="14px system-ui,sans-serif";ctx.textAlign="center";ctx.fillText("Parameter t",(L+R)/2,g.H-13);
 }
 function draw(){if(!selected.length)return;contour();spectrum();xy();}
+function drawAnimation(){if(!selected.length)return;contour();xy();}
 function stopFrame(){if(raf)cancelAnimationFrame(raf);raf=0;lastFrame=null;}
+// Advance at a steady, readable pace (one contour per ~18 seconds).
+// Only the two animated canvases are redrawn; the spectrum stays static.
 function animate(now){
   raf=0;if(!running)return;
-  if(lastFrame!==null){frame=(frame+Math.min(144,Math.max(1,Math.round((now-lastFrame)/15*16))))%N;draw();}
+  if(lastFrame!==null){
+    const dt=Math.min(100,Math.max(0,now-lastFrame));
+    frameFraction=(frameFraction+dt*N/18000)%N;
+    const next=Math.floor(frameFraction);
+    if(next!==frame){frame=next;drawAnimation();}
+  }
   lastFrame=now;raf=requestAnimationFrame(animate);
 }
 function setRunning(value){
@@ -259,6 +267,6 @@ $("word").addEventListener("keydown",e=>{if(e.key==="Enter")recompute()});
 $("epicycle-components").addEventListener("input",selection);
 for(const id of ["circles","target"])$(id).addEventListener("change",draw);
 $("animate").addEventListener("click",()=>setRunning(!running));
-$("restart").addEventListener("click",()=>{setRunning(false);frame=0;draw()});
+$("restart").addEventListener("click",()=>{setRunning(false);frame=0;frameFraction=0;draw()});
 document.addEventListener("visibilitychange",()=>{if(document.hidden)setRunning(false)});
 recompute();
