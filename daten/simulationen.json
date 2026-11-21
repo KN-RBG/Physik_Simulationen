@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "stand": "2026-11-15",
+  "stand": "2026-11-21",
   "hinweis": "Klassenstufen/Bildungsgänge erst nach inhaltlicher Prüfung zuordnen; keine Browser-Version als fertig ausgewiesen.",
   "simulationen": [
     {
@@ -24,10 +24,10 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Wellenueberlagerung",
-      "html_url": null,
+      "html_url": "simulationen/wellenueberlagerung/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet."
     },
     {
       "id": "gleichlaufende-wellen",
