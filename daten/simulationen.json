@@ -63,10 +63,10 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Zeigerdiagramm",
-      "html_url": null,
+      "html_url": "simulationen/zeigerdiagramm/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft."
     },
     {
       "id": "federschwerependel",
