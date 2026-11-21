@@ -16,7 +16,8 @@
       "status": "Browser-Prototyp zur Erprobung",
       "hinweis": "Erste interaktive HTML-Version mit Punktladungen, Plattenkondensator und Platte mit Punktladung vorhanden. Numerische Feldlinien und Darstellung noch fachlich sowie auf Endgeräten zu prüfen. Python-Version unverändert.",
       "python_public": false,
-      "python_download_url": "downloads/python/elektrische-feldlinien/elektrische_feldlinien.py"
+      "python_download_url": "downloads/python/elektrische-feldlinien/elektrische_feldlinien.py",
+      "qr_url": "assets/qr/elektrische-feldlinien.svg"
     },
     {
       "id": "wellenueberlagerung",
