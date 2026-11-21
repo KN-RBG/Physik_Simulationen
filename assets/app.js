@@ -1,4 +1,4 @@
-const THEMEN=["Elektrische und magnetische Felder","Induktion","Mechanische Schwingungen und Wellen","Elektromagnetische Schwingungen und Wellen","Atom- und Quantenphysik","Weitere Themen"];
+const THEMEN=["Elektrische und magnetische Felder","Induktion","Mechanische Schwingungen und Wellen","Elektromagnetische Schwingungen und Wellen","Interferenz","Atom- und Quantenphysik","Weitere Themen"];
 let katalog=[];
 const el=(id)=>document.getElementById(id);
 function render(){const modus=document.querySelector('input[name=ansicht]:checked').value,stufe=el("klasse").value,gang=el("bildungsgang").value,fach=el("thema").value,q=el("suche").value.toLocaleLowerCase("de");
