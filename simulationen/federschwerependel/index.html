@@ -36,7 +36,7 @@ main{display:block;max-width:1500px}
   .display+div{display:block}
   .panel{padding:.8rem}
 }
-</style>
+.phase-ticks{display:flex;justify-content:space-between;color:#63788a;font-size:.81rem;font-weight:400;margin-top:.05rem}.phase-ticks span{font-weight:400}</style>
 <script src="simulation.js" defer></script></head>
 <body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Federschwerependel: Bewegung und Kräfte</h1><p>Auslenkung, Gleichgewichtslage sowie Gewichtskraft, Federkraft und resultierende Kraft untersuchen.</p></header>
 <main>
@@ -68,7 +68,7 @@ main{display:block;max-width:1500px}
 </div></section>
 <div>
 <section class="panel"><h2>Steuerung</h2>
-<label class="control" for="phase"><span>Phase φ <output id="phase-out">0°</output></span><input type="range" id="phase" min="0" max="360" step="1" value="0"></label>
+<label class="control" for="phase"><span>Phase φ (Bogenmaß) <output id="phase-out">0,00 rad (0π)</output></span><input type="range" id="phase" min="0" max="720" step="1" value="0" aria-label="Phase von 0 bis 4 Pi im Bogenmaß"><span class="phase-ticks"><span>0</span><span>π</span><span>2π</span><span>3π</span><span>4π</span></span></label>
 <label class="control" for="amplitude"><span>Amplitude A <output id="amplitude-out">0,080 m</output></span><input type="range" id="amplitude" min="0.01" max="0.15" step="0.005" value="0.08"></label>
 <label class="control" for="federhaerte"><span>Federhärte D <output id="federhaerte-out">12,0 N/m</output></span><input type="range" id="federhaerte" min="8" max="25" step="0.5" value="12"></label>
 <label class="control" for="masse-regler"><span>Masse m <output id="masse-out">0,25 kg</output></span><input type="range" id="masse-regler" min="0.10" max="0.40" step="0.01" value="0.25"></label>
