@@ -163,7 +163,10 @@ $("phase").addEventListener("input",()=>{
   draw();
 });
 for(const id of ["amplitude","federhaerte","masse-regler","einzelkraefte-check","resultierende-check"]){
-  $(id).addEventListener("input",draw);
+  $(id).addEventListener("input",()=>{
+    if(id==="federhaerte"||id==="masse-regler")elapsed=phase/Math.sqrt(N("federhaerte")/N("masse-regler"));
+    draw();
+  });
 }
 for(const id of ["kurve-s","kurve-v","kurve-a"]){$(id).addEventListener("change",draw)}
 document.addEventListener("visibilitychange",()=>{if(document.hidden)setPaused(true)});
