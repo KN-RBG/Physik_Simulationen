@@ -166,12 +166,13 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": null,
-      "html_url": null,
-      "webprojekt_url": "https://github.com/KN-RBG/Physik_Test_01",
-      "status": "Python-Version zur Erprobung",
-      "hinweis": "Python-Version mit erklärten Parametern, unabhängigen Checkboxen für Sinus und Cosinus, Original-Reglerbereichen und Zurücksetzen. Grafischer Test noch ausstehend.",
+      "html_url": "simulationen/sinusfunktion/index.html",
+      "webprojekt_url": null,
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Eigenständige Python- und HTML-Version mit Sinus- und Cosinuskurven, unabhängig auswählbaren Checkboxen, erklärten Parametern a,b,c,d und Zurücksetzen. Browser- und GUI-Test auf Zielgeräten noch ausstehend.",
       "python_public": null,
-      "python_download_url": "downloads/python/sinus-geogebra/sinusfunktion.py"
+      "python_download_url": "downloads/python/sinus-geogebra/sinusfunktion.py",
+      "qr_url": "assets/qr/sinusfunktion.svg"
     }
   ]
 }
