@@ -58,12 +58,13 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Interferenz-am-Mehrfachspalt",
-      "html_url": null,
+      "html_url": "simulationen/mehrfachspalt/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "HTML-Version nach Python-GUI mit Anzahl der Spalte, Breite, Abstand, Schirmabstand, Wellenlänge, Schirmbereich sowie Einzelspalt-Beugung und separat anzeigbarer Hüllkurve. Mathematische Umsetzung geprüft; Browser-/Gerätetest noch offen.",
       "python_public": false,
-      "python_download_url": "downloads/python/mehrfachspalt/Mehrfachspalt_GUI.py"
+      "python_download_url": "downloads/python/mehrfachspalt/Mehrfachspalt_GUI.py",
+      "qr_url": "assets/qr/mehrfachspalt.svg"
     },
     {
       "id": "zeigerdiagramm",
