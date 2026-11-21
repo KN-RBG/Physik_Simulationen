@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gleichlaufende Wellen, Interferenz und Schwebung mit veränderlichem Senderabstand"><title>Gleichlaufende Wellen – Interferenz und Schwebung</title><link rel="stylesheet" href="style.css"><script src="simulation.js" defer></script></head>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gleichlaufende Wellen, Interferenz und Schwebung mit veränderlichem Senderabstand"><title>Gleichlaufende Wellen – Interferenz und Schwebung</title><link rel="stylesheet" href="style.css"><script src="simulation.js?v=20261121-snap" defer></script></head>
 <body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Gleichlaufende Wellen – Interferenz und Schwebung</h1><p>Zwei räumlich getrennte Sender, ein verschiebbarer Hörpunkt und ein veränderlicher Erregerabstand.</p></header>
 <main><section class="panel plot-panel"><h2>Zwei getrennte Sender – gleichlaufende Wellen</h2><canvas id="plot" width="1080" height="520" role="img" aria-label="Wellen 1 und 2, Überlagerung, Senderpositionen und Hörpunkt als animiertes Ortsdiagramm"></canvas>
 <div class="legend"><span class="w1">— Welle 1</span><span class="w2">— Welle 2</span><span class="sum">— Gesamtwelle</span><span class="hear">⋮ Hörpunkt</span></div>
@@ -10,7 +10,7 @@
 <fieldset><legend>Positionen</legend>
 <label for="listener">Hörpunkt x<sub>H</sub> / λ₀ <output id="listener-out">5,00</output></label><input id="listener" type="range" min="0" max="10" step="0.05" value="5">
 <label for="distance">Abstand d / λ₀ <output id="distance-out">0,25</output></label><input id="distance" type="range" min="0" max="2" step="0.01" value="0.25">
-<div class="presets"><button type="button" id="half">d = 0,5 λ₀</button><button type="button" id="one-half">d = 1,5 λ₀</button></div>
+<div class="distance-marks" aria-hidden="true"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0</span></div><p class="small">Feine Schritte von 0,01 λ₀; bei halben Wellenlängen rastet der Regler beim Loslassen exakt ein.</p>
 </fieldset>
 <fieldset><legend>Amplituden</legend>
 <label for="amp1">A₁ <output id="amp1-out">1,00</output></label><input id="amp1" type="range" min="0" max="2" step="0.05" value="1">
