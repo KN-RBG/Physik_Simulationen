@@ -31,7 +31,8 @@
       "status": "Browser-Version zur Erprobung",
       "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet. Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
       "python_public": false,
-      "python_download_url": "downloads/python/wellenueberlagerung/Ueberlagerung_Wellen.py"
+      "python_download_url": "downloads/python/wellenueberlagerung/Ueberlagerung_Wellen.py",
+      "qr_url": "assets/qr/wellenueberlagerung.svg"
     },
     {
       "id": "gleichlaufende-wellen",
@@ -76,7 +77,8 @@
       "status": "Browser-Version zur Erprobung",
       "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft. Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
       "python_public": false,
-      "python_download_url": "downloads/python/zeigerdiagramm/zeigerdiagramm.py"
+      "python_download_url": "downloads/python/zeigerdiagramm/zeigerdiagramm.py",
+      "qr_url": "assets/qr/zeigerdiagramm.svg"
     },
     {
       "id": "federschwerependel",
@@ -91,7 +93,8 @@
       "status": "Browser-Version zur Erprobung",
       "hinweis": "HTML-Umsetzung mit Phasen-, Amplituden-, D- und m-Reglern sowie Kraftvektoren; physikalische Rechenfälle dokumentiert, visueller Browser-/Unterrichtstest ausstehend.",
       "python_public": false,
-      "python_download_url": "downloads/python/federschwerependel/federschwerependel_animation.py"
+      "python_download_url": "downloads/python/federschwerependel/federschwerependel_animation.py",
+      "qr_url": "assets/qr/federschwerependel.svg"
     },
     {
       "id": "schwingkreis-vergleich",
