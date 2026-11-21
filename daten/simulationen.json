@@ -117,16 +117,17 @@
       "id": "fourier",
       "titel": "Fourier-Transformation",
       "thema": "Mechanische Schwingungen und Wellen",
-      "beschreibung": "Fourier-Reihen und Signalanalyse",
+      "beschreibung": "Fourier-Zerlegung periodischer Signale, Frequenzfilter und Rekonstruktion von Wortkonturen durch Epizykel",
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Fourier_Transformation",
-      "html_url": null,
+      "html_url": "simulationen/fourier/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Zwei HTML-Ansichten: Fourier-1D-Signalanalyse mit Frequenzspektrum, Tief-/Hochpass und Einzelkomponenten; Epizykel-Demo für eingegebene Worte mit Konturrekonstruktion, Spektrum und x(t)/y(t). Beide ursprünglichen Python-Downloads vorhanden. Visuelle und Laufzeittests auf Zielgeräten ausstehend.",
       "python_public": false,
-      "python_download_url": "downloads/python/fourier/Fourier_1D_GUI.py"
+      "python_download_url": "downloads/python/fourier/Fourier_1D_GUI.py",
+      "qr_url": "assets/qr/fourier.svg"
     },
     {
       "id": "motorkennlinie",
