@@ -6,6 +6,36 @@
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#182c40;background:#f4f7fa}*{box-sizing:border-box}body{margin:0}header{background:#183650;color:white;padding:1.3rem clamp(1rem,4vw,3rem)}header h1{margin:.4rem 0;font-size:clamp(1.4rem,3vw,2rem)}header p{color:#d4e6f4;margin:.3rem 0}header a{color:#b9e9f3}main{max-width:1400px;margin:auto;padding:1rem;display:grid;grid-template-columns:minmax(330px,1.3fr) minmax(300px,.8fr);gap:1rem}.panel{background:white;border:1px solid #d4e0ea;border-radius:14px;padding:1.1rem;margin-bottom:1rem}.panel h2{margin:.15rem 0 .8rem;font-size:1.08rem}.display{min-width:0}.stage{width:100%;max-width:780px;margin:auto}svg{display:block;width:100%;height:auto}label.control{display:block;margin:1.2rem 0}label.control>span{display:flex;justify-content:space-between;gap:.5rem;font-weight:650}input[type=range]{width:100%;accent-color:#087f9c;margin:.8rem 0 .15rem}output{font-variant-numeric:tabular-nums;font-weight:600}fieldset{border:1px solid #d6e1e9;border-radius:8px;margin:1rem 0;padding:.9rem}fieldset legend{font-weight:700}fieldset label{display:block;margin:.45rem 0}input[type=checkbox]{accent-color:#087f9c}.action{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}button{border:1px solid #0b7995;background:#0b7995;color:white;padding:.6rem 1.3rem;border-radius:8px;font-weight:700;cursor:pointer;font:inherit}button:focus-visible,input:focus-visible{outline:3px solid #e5a43e;outline-offset:3px}.description{color:#53687b;font-size:.91rem;line-height:1.6}dl{display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;margin:0}dt{color:#44596f}dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}.fblue{color:#206ea7}.fred{color:#bf4141}.forange{color:#b46a16}.fpurple{color:#864da8}footer{max-width:1400px;margin:auto;padding:0 2rem 2rem;font-size:.9rem}footer a{color:#0a6c8c}@media(max-width:900px){main{display:block}.stage{max-width:600px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 .time-graph{margin-top:.9rem;border-top:1px solid #dde7ee;padding-top:1rem}.time-graph h2{margin:.2rem 0 .7rem}.curve-toggles{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;font-weight:650}.curve-toggles label{cursor:pointer}.curve-toggles input{accent-color:currentColor}.time-graph svg{background:#fff;border:1px solid #edf1f5;border-radius:8px}
+
+/* Kompakte gemeinsame Bühne: Pendel und Kurven auf Desktop nebeneinander. */
+main{display:block;max-width:1500px}
+.display{display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.4fr);gap:.7rem 1.3rem;align-items:start}
+.display>h2{grid-column:1/-1;margin:0 0 .1rem}
+.stage{width:100%;max-width:490px;margin:0 auto;min-width:0}
+.stage #zeichnung{width:100%;height:auto;max-height:clamp(330px,66vh,510px)}
+.time-graph{min-width:0;margin-top:0;padding-top:0;border-top:0;align-self:start}
+.time-graph h2{font-size:1.02rem;margin:.1rem 0 .55rem}
+.time-graph #zeitdiagramm{width:100%;height:auto;display:block}
+.time-graph .description{margin:.5rem 0 0}
+.curve-toggles{margin-top:.45rem;gap:.6rem 1.1rem}
+.display+div{display:grid;grid-template-columns:minmax(300px,1.3fr) repeat(2,minmax(210px,1fr));gap:1rem;align-items:start}
+.display+div>.panel{min-width:0}
+@media(max-width:1050px){
+  .display{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:1rem}
+  .stage #zeichnung{max-height:440px}
+  .display+div{grid-template-columns:1fr 1fr}
+  .display+div>.panel:first-child{grid-column:1/-1}
+}
+@media(max-width:720px){
+  main{padding:.65rem}
+  .display{grid-template-columns:minmax(0,1fr)}
+  .display>h2{grid-column:1}
+  .stage{max-width:300px}
+  .stage #zeichnung{max-height:320px}
+  .time-graph{border-top:1px solid #dde7ee;padding-top:.6rem}
+  .display+div{display:block}
+  .panel{padding:.8rem}
+}
 </style>
 <script src="simulation.js" defer></script></head>
 <body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Federschwerependel: Bewegung und Kräfte</h1><p>Auslenkung, Gleichgewichtslage sowie Gewichtskraft, Federkraft und resultierende Kraft untersuchen.</p></header>
