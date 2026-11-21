@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interferenz am Mehrfachspalt mit optionaler Einzelspalt-Beugung und Hüllkurve"><title>Interferenz am Mehrfachspalt</title>
+<link rel="stylesheet" href="style.css"><script src="simulation.js" defer></script></head>
+<body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Interferenz am Mehrfachspalt</h1><p>Intensitätsverteilung beim Mehrfachspalt mit wählbaren geometrischen Größen und Wellenlänge.</p></header>
+<main><section class="controls panel"><h2>Einstellungen</h2>
+<form id="settings" novalidate>
+<label>Anzahl der Spalte <input id="number" type="number" min="1" step="1" value="2" required></label>
+<label>Spaltbreite b <span class="withunit"><input id="width" type="text" inputmode="decimal" value="0,05" required><span>mm</span></span></label>
+<label>Spaltabstand g <span class="withunit"><input id="spacing" type="text" inputmode="decimal" value="0,20" required><span>mm</span></span></label>
+<label>Abstand zum Schirm a <span class="withunit"><input id="screenDistance" type="text" inputmode="decimal" value="2,0" required><span>m</span></span></label>
+<label>Wellenlänge λ <span class="withunit"><input id="wavelength" type="text" inputmode="decimal" value="650" required><span>nm</span></span></label>
+<hr><h3>Bereich auf dem Schirm</h3>
+<label>von <span class="withunit"><input id="from" type="text" inputmode="decimal" value="-60" required><span>mm</span></span></label>
+<label>bis <span class="withunit"><input id="to" type="text" inputmode="decimal" value="60" required><span>mm</span></span></label>
+<hr>
+<label class="check"><input id="singleSlit" type="checkbox"> Einzelspalt berücksichtigen</label>
+<label class="check"><input id="envelope" type="checkbox"> Einzelspalt-Hüllkurve anzeigen</label>
+<div class="actions"><button type="submit">Interferenzbild zeichnen</button><button type="button" id="reset" class="light">Standardwerte</button></div>
+<p id="error" role="alert" aria-live="polite"></p>
+</form></section>
+<section class="plot panel"><h2 id="chart-title">Interferenzbild eines 2-fach-Spalts</h2><p id="chart-subtitle">λ = 650 nm, a = 2,00 m, b = 0,050 mm, g = 0,200 mm</p><p id="chart-mode">ohne Einzelspalt-Beugung</p>
+<canvas id="diagram" width="1120" height="670" aria-label="Intensitätsverteilung am Mehrfachspalt, relativ zur maximalen Intensität" role="img"></canvas>
+<div class="legend"><span><i class="line-sample"></i> Interferenzbild</span><span id="envelope-legend" hidden><i class="line-sample red"></i> Einzelspalt-Hüllkurve</span></div>
+</section></main>
+<footer><a href="../../downloads/python/mehrfachspalt/Mehrfachspalt_GUI.py" download>Python-Version herunterladen</a> · <a href="../../index.html">Alle Simulationen</a></footer>
+</body></html>
