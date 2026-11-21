@@ -14,7 +14,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "wellenueberlagerung",
@@ -27,7 +28,8 @@
       "html_url": "simulationen/wellenueberlagerung/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet."
+      "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet.",
+      "python_public": false
     },
     {
       "id": "gleichlaufende-wellen",
@@ -40,7 +42,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": true
     },
     {
       "id": "mehrfachspalt",
@@ -53,7 +56,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "zeigerdiagramm",
@@ -66,7 +70,8 @@
       "html_url": "simulationen/zeigerdiagramm/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft."
+      "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft.",
+      "python_public": false
     },
     {
       "id": "federschwerependel",
@@ -79,7 +84,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "schwingkreis-vergleich",
@@ -92,7 +98,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": true
     },
     {
       "id": "fourier",
@@ -105,7 +112,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "motorkennlinie",
@@ -118,7 +126,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "sternbilder",
@@ -131,7 +140,8 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "geogebra-wellen",
@@ -144,7 +154,8 @@
       "html_url": null,
       "webprojekt_url": "https://github.com/KN-RBG/Geogebra_Test",
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": false
     },
     {
       "id": "sinus-geogebra",
@@ -157,7 +168,8 @@
       "html_url": null,
       "webprojekt_url": "https://github.com/KN-RBG/Physik_Test_01",
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft"
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
+      "python_public": null
     }
   ]
 }
