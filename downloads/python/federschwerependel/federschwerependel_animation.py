@@ -109,11 +109,11 @@ check_buttons = CheckButtons(
 ax_phase = plt.axes([0.16, 0.18, 0.48, 0.028])
 phase_slider = Slider(
     ax_phase,
-    r"Phase $\varphi$ [°]",
+    r"Phase $\varphi$ [rad]",
     0.0,
-    360.0,
+    4 * np.pi,
     valinit=0.0,
-    valstep=1.0
+    valstep=np.deg2rad(1.0)
 )
 
 ax_amp = plt.axes([0.16, 0.135, 0.48, 0.028])
@@ -179,6 +179,8 @@ def update_time_graph(phase, omega, amp, frame_time):
     ax_acc.set_ylim(-1.15 * amp * omega**2, 1.15 * amp * omega**2)
 
     cursor_time = frame_time % (2 * T)
+    if paused and np.isclose(frame_time, 2 * T):
+        cursor_time = 2 * T
     cursor.set_xdata([cursor_time, cursor_time])
     dot_s.set_data([cursor_time], [amp * np.cos(phase)])
     dot_v.set_data([cursor_time], [-amp * omega * np.sin(phase)])
@@ -251,18 +253,17 @@ def update(frame):
     # Während des normalen Ablaufs wird die Phase aus der Zeit berechnet.
     # Im Pausenmodus bestimmt der Phasenregler die Position direkt.
     if paused:
-        phase_deg = phase_slider.val
-        phase = np.deg2rad(phase_deg)
+        phase = phase_slider.val
         chart_time = phase / omega
     else:
         t = frame_counter * dt
         phase = omega * t
         chart_time = t
-        phase_deg = np.degrees(phase) % 360.0
+        phase_in_slider = phase % (4 * np.pi)
 
         # Regler während der Animation mitführen, ohne dadurch zu pausieren.
         updating_phase_slider = True
-        phase_slider.set_val(phase_deg)
+        phase_slider.set_val(phase_in_slider)
         updating_phase_slider = False
 
     # Auslenkung relativ zur Gleichgewichtslage.
@@ -369,7 +370,7 @@ def toggle_pause(event):
         D = D_slider.val
         m = m_slider.val
         omega = np.sqrt(D / m)
-        phase = np.deg2rad(phase_slider.val)
+        phase = phase_slider.val
         frame_counter = int(phase / (omega * 0.035))
         paused = False
         pause_button.label.set_text("Pause")
