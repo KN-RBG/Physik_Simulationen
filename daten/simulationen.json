@@ -1,15 +1,19 @@
 {
   "version": 1,
   "stand": "2026-11-21",
-  "hinweis": "Klassenstufen/Bildungsgänge erst nach inhaltlicher Prüfung zuordnen; keine Browser-Version als fertig ausgewiesen.",
+  "hinweis": "Bestehende Physik-Simulationen sind G8 zugeordnet; elektrische und magnetische Felder, Induktion und mechanische Schwingungen JG1, mechanische Wellen und übrige Physikthemen JG2. Fachfremde Projekte bleiben ausgeblendet und ohne Zuordnung.",
   "simulationen": [
     {
       "id": "elektrische-feldlinien",
       "titel": "Elektrische Feldlinien",
       "thema": "Elektrische und magnetische Felder",
       "beschreibung": "Punktladungen und Feldlinien",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG1"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/elektrische_Feldlinien",
       "html_url": "simulationen/elektrische-feldlinien/index.html",
       "webprojekt_url": null,
@@ -24,8 +28,12 @@
       "titel": "Überlagerung gegenläufiger sinusförmiger Wellen",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Überlagerung sinusförmiger Wellen",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Wellenueberlagerung",
       "html_url": "simulationen/wellenueberlagerung/index.html",
       "webprojekt_url": null,
@@ -40,8 +48,12 @@
       "titel": "Gleichlaufende Wellen",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Interferenz und Schwebungen",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Physik_gleichlaufende_Wellen",
       "html_url": "simulationen/gleichlaufende-wellen/index.html",
       "webprojekt_url": null,
@@ -56,8 +68,12 @@
       "titel": "Interferenz am Mehrfachspalt",
       "thema": "Interferenz",
       "beschreibung": "Intensitätsverteilung am Mehrfachspalt",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Interferenz-am-Mehrfachspalt",
       "html_url": "simulationen/mehrfachspalt/index.html",
       "webprojekt_url": null,
@@ -72,8 +88,12 @@
       "titel": "Zeigerdiagramm",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Kreisbewegung und Sinusfunktion",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG1"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Zeigerdiagramm",
       "html_url": "simulationen/zeigerdiagramm/index.html",
       "webprojekt_url": null,
@@ -88,8 +108,12 @@
       "titel": "Federschwerependel",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Mechanische Schwingung einer Feder",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG1"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Federschwerependel",
       "html_url": "simulationen/federschwerependel/index.html",
       "webprojekt_url": null,
@@ -104,8 +128,12 @@
       "titel": "Schwingkreis und Federpendel",
       "thema": "Elektromagnetische Schwingungen und Wellen",
       "beschreibung": "Vergleich elektrischer und mechanischer Schwingungen",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/schwingkreis_-vergleich",
       "html_url": "simulationen/schwingkreis-vergleich/index.html",
       "webprojekt_url": null,
@@ -120,8 +148,12 @@
       "titel": "Fourier-Transformation",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Fourier-Zerlegung periodischer Signale, Frequenzfilter und Rekonstruktion von Wortkonturen durch Epizykel",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": "https://github.com/KN-RBG/Fourier_Transformation",
       "html_url": "simulationen/fourier/index.html",
       "webprojekt_url": null,
@@ -166,8 +198,12 @@
       "titel": "Sinus- und Cosinusfunktionen interaktiv",
       "thema": "Mechanische Schwingungen und Wellen",
       "beschreibung": "Transformation von Sinus und Cosinus mit vier Parametern a, b, c und d",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
+      "klassenstufen": [
+        "JG1"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
       "python_url": null,
       "html_url": "simulationen/sinusfunktion/index.html",
       "webprojekt_url": null,
