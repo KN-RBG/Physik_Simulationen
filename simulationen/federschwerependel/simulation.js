@@ -23,8 +23,13 @@ function draw(){
   const L=L_eq-s; // upper displacement positive
   const Fg=m*g,Ff=D*(L-L0),Fres=Fg-Ff;
   const massY=yPx(L),eqY=yPx(L_eq);
-  $("phase").value=String(Math.round(((phase%(2*Math.PI))+2*Math.PI)%(2*Math.PI)*180/Math.PI));
-  $("phase-out").textContent=$("phase").value+"°";
+  const cycle=2*Math.PI;
+  const twoCycles=4*Math.PI;
+  const displayPhase=paused ? phase : ((phase%twoCycles)+twoCycles)%twoCycles;
+  const degrees=Math.round(displayPhase*180/Math.PI);
+  $("phase").value=String(Math.min(720,degrees));
+  const rad=Number($("phase").value)*Math.PI/180;
+  $("phase-out").textContent=fmt(rad,2)+" rad ("+fmt(rad/Math.PI,2)+"π)";
   $("amplitude-out").textContent=fmt(A,3)+" m";
   $("federhaerte-out").textContent=fmt(D,1)+" N/m";
   $("masse-out").textContent=fmt(m,2)+" kg";
@@ -120,7 +125,7 @@ function drawTimeGraph(A,omega){
     }
     E("path",{d:points.join(" "),fill:"none",stroke:color,"stroke-width":2.5});
   }
-  const currentTime=((elapsed%span)+span)%span;
+  const currentTime=paused ? Math.min(span,Math.max(0,elapsed)) : ((elapsed%span)+span)%span;
   const cursor=x(currentTime);
   E("line",{x1:cursor,y1:Y0,x2:cursor,y2:Y1,stroke:"#262c34","stroke-width":2,"stroke-dasharray":"5 5"});
   for(let i=0;i<3;i++)if(visible[i]){
@@ -128,7 +133,6 @@ function drawTimeGraph(A,omega){
     const v=i===0?A*Math.cos(angle):i===1?-A*omega*Math.sin(angle):-A*omega*omega*Math.cos(angle);
     E("circle",{cx:cursor,cy:ym-v/maxs[i]*ampl,r:4,fill:colors[i],stroke:"white","stroke-width":1});
   }
-  E("text",{x:(X0+X1)/2,y:280,"text-anchor":"middle","font-size":14,fill:"#263e55"},"Zeit t [s] · T = "+fmt(T,3)+" s");
 }
 
 function setPaused(on){
@@ -148,8 +152,8 @@ function frame(now){
     // Equivalent to dt=0.035s per 35ms frame in the Python source.
     const dt=Math.min(.2,Math.max(0,(now-lastFrame)/1000));
     const omega=Math.sqrt(N("federhaerte")/N("masse-regler"));
-    phase=(phase+omega*dt)%(2*Math.PI);
     elapsed+=dt;
+    phase=omega*elapsed;
     draw();
   }
   lastFrame=now;
