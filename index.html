@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interaktive Physik-Simulationen für alle Klassenstufen"><title>Physik-Simulationen | KN-RBG</title><link rel="stylesheet" href="assets/style.css"><script src="assets/app.js" defer></script></head>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interaktive Physik-Simulationen für alle Klassenstufen"><title>Physik-Simulationen | KN-RBG</title><link rel="stylesheet" href="assets/style.css?v=20261121-qr"><script src="assets/app.js?v=20261121-qr" defer></script></head>
 <body><header><div class="eyebrow">KN-RBG · Interaktive Physik</div><h1>Physik-Simulationen</h1><p>Ein zentraler Zugang zu unseren Simulationen – mit Python-Versionen für die lokale Nutzung und schrittweise ergänzten Browser-Versionen für alle Endgeräte.</p></header>
 <main><p class="intro">Die Sammlung wächst. Wir trennen Themengebiete, Klassenstufen und Bildungsgang (G8/G9), damit eine Simulation mehreren Kursen zugeordnet werden kann, ohne sie zu duplizieren.</p>
 <fieldset class="mode"><legend>Simulationen finden</legend><label><input type="radio" name="ansicht" value="themen" checked> Nach Themengebiet</label><label><input type="radio" name="ansicht" value="klassen"> Nach Klassenstufe</label></fieldset>
@@ -8,4 +8,11 @@
 <label>Klassenstufe<select id="klasse"><option value="">Alle Klassenstufen</option><option>7</option><option>8</option><option>9</option><option>10</option><option>JG1</option><option>JG2</option></select></label>
 <label>Bildungsgang<select id="bildungsgang"><option value="">G8 und G9</option><option>G8</option><option>G9</option></select></label></div>
 <p class="meta">Die Zuordnungen zu Klassen und Bildungsgängen werden nach fachlicher Prüfung ergänzt. Bis dahin kann ein Klassenfilter leer bleiben.</p><p id="anzahl" class="count" aria-live="polite">Katalog wird geladen …</p><div id="ergebnisse" aria-live="polite"></div>
-</main><footer>KN-RBG · Aufbauphase · <a href="https://github.com/KN-RBG/Physik_Simulationen">Quellcode auf GitHub</a></footer></body></html>
+</main>
+<dialog id="qr-dialog" class="qr-dialog" aria-labelledby="qr-title">
+  <div class="qr-dialog-head"><h2 id="qr-title">QR-Code</h2><button id="qr-close" type="button" aria-label="QR-Code schließen">✕ Schließen</button></div>
+  <p class="qr-instruction">QR-Code mit der Smartphone-Kamera scannen, um die Simulation direkt zu öffnen.</p>
+  <img id="qr-image" class="qr-image" alt="" width="760" height="760">
+  <p id="qr-target" class="qr-target"></p>
+</dialog>
+<footer>KN-RBG · Aufbauphase · <a href="https://github.com/KN-RBG/Physik_Simulationen">Quellcode auf GitHub</a></footer></body></html>
