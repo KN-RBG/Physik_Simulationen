@@ -28,7 +28,7 @@ mass_height = 0.075
 force_scale = 0.055  # m pro N für Pfeillängen
 
 fig, ax = plt.subplots(figsize=(8.8, 8.0))
-plt.subplots_adjust(left=0.08, right=0.72, bottom=0.27, top=0.92)
+plt.subplots_adjust(left=0.08, right=0.72, bottom=0.51, top=0.94)
 
 ax.set_xlim(-0.55, 0.55)
 ax.set_ylim(1.05, -0.05)   # y-Achse nach unten
@@ -134,6 +134,71 @@ show_individual_forces = True
 show_resultant_force = True
 updating_phase_slider = False
 
+# Zeitdiagramm unmittelbar unter der mechanischen Animation.
+# Drei eigene farbige y-Skalen: reale Werte und reale Einheiten, nicht normiert.
+ax_time = fig.add_axes([0.12, 0.28, 0.48, 0.19])
+ax_vel = ax_time.twinx()
+ax_acc = ax_time.twinx()
+ax_acc.spines["right"].set_position(("outward", 54))
+ax_time.set_xlabel("Zeit t in s", fontsize=9)
+ax_time.set_ylabel("s in m", color="tab:purple", fontsize=9)
+ax_vel.set_ylabel("v in m/s", color="tab:blue", fontsize=9)
+ax_acc.set_ylabel("a in m/s²", color="tab:orange", fontsize=9)
+for plot_ax, color in ((ax_time, "tab:purple"), (ax_vel, "tab:blue"), (ax_acc, "tab:orange")):
+    plot_ax.tick_params(axis="y", colors=color, labelsize=8)
+ax_time.tick_params(axis="x", labelsize=8)
+ax_time.grid(True, alpha=0.25)
+ax_time.set_title("Zeitverläufe über zwei Perioden", fontsize=10)
+
+line_s, = ax_time.plot([], [], color="tab:purple", lw=1.7, label="s(t)")
+line_v, = ax_vel.plot([], [], color="tab:blue", lw=1.7, label="v(t)")
+line_a, = ax_acc.plot([], [], color="tab:orange", lw=1.7, label="a(t)")
+cursor = ax_time.axvline(0.0, color="0.2", ls="--", lw=1.2)
+dot_s, = ax_time.plot([], [], "o", color="tab:purple", ms=4)
+dot_v, = ax_vel.plot([], [], "o", color="tab:blue", ms=4)
+dot_a, = ax_acc.plot([], [], "o", color="tab:orange", ms=4)
+
+ax_curve_checks = fig.add_axes([0.75, 0.47, 0.22, 0.13])
+ax_curve_checks.set_frame_on(False)
+curve_checks = CheckButtons(ax_curve_checks, ["s(t)", "v(t)", "a(t)"], [True, True, True])
+show_curves = [True, True, True]
+
+
+def update_time_graph(phase, omega, amp, frame_time):
+    """Zwei Perioden und aktuellen Zeitpunkt; reale Achsenwerte je Größe."""
+    T = 2 * np.pi / omega
+    ts = np.linspace(0, 2 * T, 700)
+    phases = omega * ts
+    line_s.set_data(ts, amp * np.cos(phases))
+    line_v.set_data(ts, -amp * omega * np.sin(phases))
+    line_a.set_data(ts, -amp * omega**2 * np.cos(phases))
+
+    ax_time.set_xlim(0, 2 * T)
+    ax_time.set_ylim(-1.15 * amp, 1.15 * amp)
+    ax_vel.set_ylim(-1.15 * amp * omega, 1.15 * amp * omega)
+    ax_acc.set_ylim(-1.15 * amp * omega**2, 1.15 * amp * omega**2)
+
+    cursor_time = frame_time % (2 * T)
+    cursor.set_xdata([cursor_time, cursor_time])
+    dot_s.set_data([cursor_time], [amp * np.cos(phase)])
+    dot_v.set_data([cursor_time], [-amp * omega * np.sin(phase)])
+    dot_a.set_data([cursor_time], [-amp * omega**2 * np.cos(phase)])
+
+    for visible, graph, dot in zip(
+        show_curves, (line_s, line_v, line_a), (dot_s, dot_v, dot_a)
+    ):
+        graph.set_visible(visible)
+        dot.set_visible(visible)
+
+
+def toggle_curve(label):
+    index = {"s(t)": 0, "v(t)": 1, "a(t)": 2}[label]
+    show_curves[index] = not show_curves[index]
+    fig.canvas.draw_idle()
+
+
+curve_checks.on_clicked(toggle_curve)
+
 
 def spring_coordinates(y_top, y_bottom, coils=16):
     """Erzeugt eine dünne, optisch realistischere Schraubenfeder."""
@@ -188,9 +253,11 @@ def update(frame):
     if paused:
         phase_deg = phase_slider.val
         phase = np.deg2rad(phase_deg)
+        chart_time = phase / omega
     else:
         t = frame_counter * dt
         phase = omega * t
+        chart_time = t
         phase_deg = np.degrees(phase) % 360.0
 
         # Regler während der Animation mitführen, ohne dadurch zu pausieren.
@@ -281,13 +348,16 @@ def update(frame):
 
     info.set_text("\n".join(info_lines))
 
+    update_time_graph(phase, omega, amp, chart_time)
+
     update_force_visibility()
 
     return (
         spring_line, mass, eq_line, eq_label,
         Fg_arrow, Ff_arrow, fg_label, ff_label,
         Fres_arrow, fres_label,
-        s_arrow, s_label, info
+        s_arrow, s_label, info,
+        line_s, line_v, line_a, cursor, dot_s, dot_v, dot_a
     )
 
 
