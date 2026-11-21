@@ -7,7 +7,7 @@ const fmt=(v,d=2)=>(Number(v).toFixed(d)).replace(".",",");
 const signed=(v,d=1)=>(v>=0?"+":"")+fmt(v,d);
 const yPx=y=>68+(y-0.02)*690; // 0.02m at ceiling; downward-positive physical coordinate
 const xPx=x=>370+x*620;
-let phase=0,paused=false,lastFrame=null,raf=0;
+let phase=0,paused=false,lastFrame=null,raf=0, elapsed=0;
 const pyElements=["phase","amplitude","federhaerte","masse-regler"];
 function setLine(id,x1,y1,x2,y2){
   const e=$(id);e.setAttribute("x1",x1);e.setAttribute("y1",y1);e.setAttribute("x2",x2);e.setAttribute("y2",y2);
@@ -73,7 +73,64 @@ function draw(){
     show("auslenkung",false);
   }else{show("auslenkung",true);setLine("auslenkung",xPx(.19),eqY,xPx(.19),massY)}
   setText("stext",xPx(.22),(massY+eqY)/2,"s");
+  drawTimeGraph(A,omega);
 }
+
+const SVG_NS="http://www.w3.org/2000/svg";
+function drawTimeGraph(A,omega){
+  const root=$("zeitdiagramm");
+  root.replaceChildren();
+  const E=(tag,attrs={},label)=>{
+    const el=document.createElementNS(SVG_NS,tag);
+    for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));
+    if(label!==undefined)el.textContent=label;
+    root.appendChild(el);return el;
+  };
+  const X0=90,X1=555,Y0=25,Y1=240,ym=(Y0+Y1)/2,ampl=(Y1-Y0)*.43;
+  const T=2*Math.PI/omega, span=2*T;
+  const x=t=>X0+(t/span)*(X1-X0);
+  const colors=["#8853a9","#2879b9","#d3852b"];
+  const maxs=[A,A*omega,A*omega*omega];
+  const names=["s","v","a"];
+  const units=["m","m/s","m/s²"];
+  const visible=[$("kurve-s").checked,$("kurve-v").checked,$("kurve-a").checked];
+  E("rect",{x:X0,y:Y0,width:X1-X0,height:Y1-Y0,fill:"#fff",stroke:"#cbd7e3"});
+  for(let k=0;k<=4;k++){
+    const t=span*k/4,xx=x(t);
+    E("line",{x1:xx,y1:Y0,x2:xx,y2:Y1,stroke:"#e3e9ef","stroke-width":1});
+    E("text",{x:xx,y:Y1+21,"text-anchor":"middle","font-size":13,fill:"#526477"},fmt(t,2));
+  }
+  for(let k=-1;k<=1;k++){
+    const yy=ym-k*ampl;
+    E("line",{x1:X0,y1:yy,x2:X1,y2:yy,stroke:k===0?"#7b8795":"#edf1f5","stroke-width":k===0?1.3:1});
+  }
+  const labelsX=[65,613,697];
+  for(let i=0;i<3;i++){
+    if(!visible[i])continue;
+    const max=maxs[i],xx=labelsX[i],color=colors[i];
+    for(const k of [-1,0,1]){
+      E("text",{x:xx,y:ym-k*ampl+4,"text-anchor":"middle","font-size":11,fill:color},fmt(k*max,Math.abs(max)<.1?3:2));
+    }
+    E("text",{x:xx,y:14,"text-anchor":"middle","font-size":13,"font-weight":"bold",fill:color},names[i]+" ["+units[i]+"]");
+    const points=[];
+    for(let j=0;j<=480;j++){
+      const t=span*j/480,angle=omega*t;
+      const v=i===0?A*Math.cos(angle):i===1?-A*omega*Math.sin(angle):-A*omega*omega*Math.cos(angle);
+      points.push((j===0?"M":"L")+x(t).toFixed(2)+" "+(ym-v/max*ampl).toFixed(2));
+    }
+    E("path",{d:points.join(" "),fill:"none",stroke:color,"stroke-width":2.5});
+  }
+  const currentTime=((elapsed%span)+span)%span;
+  const cursor=x(currentTime);
+  E("line",{x1:cursor,y1:Y0,x2:cursor,y2:Y1,stroke:"#262c34","stroke-width":2,"stroke-dasharray":"5 5"});
+  for(let i=0;i<3;i++)if(visible[i]){
+    const angle=omega*currentTime;
+    const v=i===0?A*Math.cos(angle):i===1?-A*omega*Math.sin(angle):-A*omega*omega*Math.cos(angle);
+    E("circle",{cx:cursor,cy:ym-v/maxs[i]*ampl,r:4,fill:colors[i],stroke:"white","stroke-width":1});
+  }
+  E("text",{x:(X0+X1)/2,y:280,"text-anchor":"middle","font-size":14,fill:"#263e55"},"Zeit t [s] · T = "+fmt(T,3)+" s");
+}
+
 function setPaused(on){
   paused=on;
   $("play").textContent=paused?"▶ Weiter":"⏸ Pause";
@@ -92,6 +149,7 @@ function frame(now){
     const dt=Math.min(.2,Math.max(0,(now-lastFrame)/1000));
     const omega=Math.sqrt(N("federhaerte")/N("masse-regler"));
     phase=(phase+omega*dt)%(2*Math.PI);
+    elapsed+=dt;
     draw();
   }
   lastFrame=now;
@@ -101,11 +159,13 @@ $("play").addEventListener("click",()=>setPaused(!paused));
 $("phase").addEventListener("input",()=>{
   setPaused(true);
   phase=Number($("phase").value)*Math.PI/180;
+  elapsed=phase/Math.sqrt(N("federhaerte")/N("masse-regler"));
   draw();
 });
 for(const id of ["amplitude","federhaerte","masse-regler","einzelkraefte-check","resultierende-check"]){
   $(id).addEventListener("input",draw);
 }
+for(const id of ["kurve-s","kurve-v","kurve-a"]){$(id).addEventListener("change",draw)}
 document.addEventListener("visibilitychange",()=>{if(document.hidden)setPaused(true)});
 draw();
 setPaused(false);
