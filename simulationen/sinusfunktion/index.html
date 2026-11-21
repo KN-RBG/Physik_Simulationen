@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sinus- und Cosinusfunktionen mit vier Parametern a, b, c und d interaktiv untersuchen">
+<title>Sinus- und Cosinusfunktionen interaktiv</title>
+<link rel="stylesheet" href="style.css">
+<script src="simulation.js" defer></script>
+</head>
+<body>
+<header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Sinus- und Cosinusfunktionen interaktiv</h1><p>Amplitude, Periodenlänge und Verschiebungen direkt vergleichen.</p></header>
+<main>
+<section class="panel graph">
+  <h2>Funktionsgraphen</h2>
+  <div class="formulas"><span class="sin">f<sub>sin</sub>(x) = a · sin(b · (x − c)) + d</span><span class="cos">f<sub>cos</sub>(x) = a · cos(b · (x − c)) + d</span></div>
+  <canvas id="plot" width="1040" height="590" role="img" aria-label="Kartesisches Diagramm der ausgewählten Sinus- und Cosinuskurven"></canvas>
+  <p class="hint">Dargestellt ist der Bereich −2π ≤ x ≤ 2π; die y-Achse passt sich bei größeren Auslenkungen an.</p>
+</section>
+<section class="panel controls">
+<h2>Einstellungen</h2>
+<div class="checks">
+<label class="sin"><input type="checkbox" id="showSin" checked> Sinus anzeigen</label>
+<label class="cos"><input type="checkbox" id="showCos"> Cosinus anzeigen</label>
+</div>
+<div class="sliders">
+<label for="a"><span>Amplitude a</span><output id="aOut" for="a">1,0</output></label>
+<input type="range" id="a" min="-3" max="3" step="0.1" value="1">
+<label for="b"><span>Faktor b</span><output id="bOut" for="b">1,0</output></label>
+<input type="range" id="b" min="0.1" max="4" step="0.1" value="1">
+<label for="c"><span>Verschiebung c</span><output id="cOut" for="c">0,0</output></label>
+<input type="range" id="c" min="-6.3" max="6.3" step="0.1" value="0">
+<label for="d"><span>Verschiebung d</span><output id="dOut" for="d">0,0</output></label>
+<input type="range" id="d" min="-3" max="3" step="0.1" value="0">
+</div>
+<button type="button" id="reset">Zurücksetzen</button>
+<h2 class="meaning-title">Bedeutung der Parameter</h2>
+<dl class="meanings">
+  <dt>a</dt><dd><strong>Amplitude:</strong> |a|. Bei a &lt; 0 erfolgt eine Spiegelung an der Mittellinie.</dd>
+  <dt>b</dt><dd><strong>Horizontale Stauchung oder Streckung.</strong> Die Periodenlänge ist T = 2π/b.</dd>
+  <dt>c</dt><dd><strong>Verschiebung in x-Richtung:</strong> c &gt; 0 verschiebt die Kurve nach rechts.</dd>
+  <dt>d</dt><dd><strong>Verschiebung in y-Richtung:</strong> Die Mittellinie liegt bei y = d.</dd>
+</dl>
+</section>
+</main>
+<footer><a href="../../downloads/python/sinus-geogebra/sinusfunktion.py" download>Python-Version herunterladen</a> · <a href="../../index.html">Alle Simulationen</a></footer>
+</body></html>
