@@ -136,6 +136,11 @@ function drawTimeGraph(A,omega){
 }
 
 function setPaused(on){
+  if(on && !paused){
+    const span=4*Math.PI;
+    phase=((phase%span)+span)%span;
+    elapsed=phase/Math.sqrt(N("federhaerte")/N("masse-regler"));
+  }
   paused=on;
   $("play").textContent=paused?"▶ Weiter":"⏸ Pause";
   $("play").setAttribute("aria-pressed",String(!paused));
