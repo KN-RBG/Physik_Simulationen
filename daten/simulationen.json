@@ -45,7 +45,7 @@
       "html_url": "simulationen/gleichlaufende-wellen/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Python- und Web-Version mit exakten d=0,5λ₀/1,5λ₀-Abstandstasten, Hörpunkt, Interferenz, Schwebung und optionalem Audio; grafischer/akustischer Test auf Zielgeräten ausstehend.",
+      "hinweis": "Python- und Web-Version mit frei einstellbarem Erregerabstand in 0,01 λ₀-Schritten; beim Loslassen Einrasten nahe 0,5/1,0/1,5/2,0 λ₀; Hörpunkt, Interferenz, Schwebung und optionaler Ton. Gerätetest noch ausstehend.",
       "python_public": true,
       "python_download_url": "downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py",
       "qr_url": "assets/qr/gleichlaufende-wellen.svg"
