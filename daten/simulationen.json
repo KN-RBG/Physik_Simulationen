@@ -159,21 +159,6 @@
       "python_download_url": null
     },
     {
-      "id": "geogebra-wellen",
-      "titel": "Wellenüberlagerung – GeoGebra",
-      "thema": "Mechanische Schwingungen und Wellen",
-      "beschreibung": "Webprototyp der Wellenüberlagerung",
-      "klassenstufen": [],
-      "bildungsgaenge": [],
-      "python_url": "https://github.com/KN-RBG/Wellenueberlagerung",
-      "html_url": null,
-      "webprojekt_url": "https://github.com/KN-RBG/Geogebra_Test",
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
-      "python_public": false,
-      "python_download_url": "downloads/python/wellenueberlagerung/Ueberlagerung_Wellen.py"
-    },
-    {
       "id": "sinus-geogebra",
       "titel": "Sinusfunktion – GeoGebra",
       "thema": "Mechanische Schwingungen und Wellen",
