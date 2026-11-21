@@ -86,10 +86,10 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/Federschwerependel",
-      "html_url": null,
+      "html_url": "simulationen/federschwerependel/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "HTML-Umsetzung mit Phasen-, Amplituden-, D- und m-Reglern sowie Kraftvektoren; physikalische Rechenfälle dokumentiert, visueller Browser-/Unterrichtstest ausstehend.",
       "python_public": false,
       "python_download_url": "downloads/python/federschwerependel/federschwerependel_animation.py"
     },
