@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interaktives Zeigerdiagramm und Sinuskurve"><title>Zeigerdiagramm und Sinuskurve | Physik-Simulationen</title><link rel="stylesheet" href="style.css"><script src="simulation.js" defer></script></head>
+<body><header><a href="../../index.html">← Zurück zur Übersicht</a><h1>Zeigerdiagramm und Sinuskurve</h1><p>Untersuche, wie die Projektion eines rotierenden Zeigers eine Sinuskurve erzeugt.</p></header>
+<main>
+<section class="panel display"><h2>Zeigerbewegung und Sinuskurve</h2>
+<div class="diagram"><svg id="plot" viewBox="0 0 1150 535" role="img" aria-label="Links rotierender Zeiger auf dem Einheitskreis, rechts die synchron wachsende Sinuskurve und darunter Winkel- und Bogenmaßskalen"><title>Zeigerdiagramm und Sinuskurve</title></svg></div>
+</section>
+<section class="panel controls">
+<label for="winkel" class="slider-title">Winkel α einstellen <output id="winkelwert" for="winkel">0°</output></label>
+<input id="winkel" aria-label="Winkel von 0 bis 720 Grad" type="range" min="0" max="720" step="1" value="0">
+<div class="ticks"><span>0°</span><span>360°</span><span>720°</span></div>
+<div class="row"><div id="winkelanzeige" class="readout">α = 0° | α = 0,00 · 2π</div><button id="play" type="button" aria-pressed="false">▶ Start</button><button id="reset" type="button">↶ Zurück</button></div>
+<p class="hint">Der Regler verschiebt den Zeiger und baut die Sinuskurve bis zum eingestellten Winkel auf. Mit „Start“ läuft die Darstellung automatisch; am Ende beginnt sie wieder von vorn.</p>
+</section>
+</main><footer><a href="https://github.com/KN-RBG/Zeigerdiagramm">Python-Version auf GitHub</a> · <a href="../../index.html">Alle Simulationen</a></footer>
+</body></html>
