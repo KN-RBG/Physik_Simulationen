@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Wellenüberlagerung – interaktive Physik-Simulation"><title>Wellenüberlagerung | Physik-Simulationen</title><link rel="stylesheet" href="style.css"><script src="simulation.js" defer></script></head>
+<body><header><a class="back" href="../../index.html">← Zurück zu Physik-Simulationen</a><h1>Überlagerung sinusförmiger Wellen</h1><p>Zwei Wellen breiten sich von den Enden einer Strecke aus. Untersuche Ausbreitung, Interferenz und die resultierende Auslenkung.</p></header>
+<main><aside aria-label="Simulationsparameter">
+<section class="panel"><h2>Versuchsaufbau</h2><label class="field">Abstand der Enden L <span>m</span><input id="L" inputmode="decimal" value="16,0" autocomplete="off"></label><p class="hint">Darstellung von x = 0 bis x = L.</p></section>
+<section class="panel wave1"><h2>Welle 1</h2>
+<label class="field">Amplitude A₁ <span>m</span><input id="A1" inputmode="decimal" value="1,0"></label>
+<label class="field">Wellenlänge λ₁ <span>m</span><input id="lambda1" inputmode="decimal" value="4,0"></label>
+<label class="field">Frequenz f₁ <span>Hz</span><input id="f1" inputmode="decimal" value="0,32"></label>
+<fieldset><legend>Ausbreitung</legend><label><input type="radio" name="richtung1" value="1" checked> Von links nach rechts →</label><label><input type="radio" name="richtung1" value="-1"> Von rechts nach links ←</label></fieldset>
+<fieldset><legend>Startform</legend><label><input type="radio" name="vorzeichen1" value="1" checked> + sin</label><label><input type="radio" name="vorzeichen1" value="-1"> − sin</label></fieldset>
+<label class="check"><input id="zeige1" type="checkbox" checked> Welle 1 anzeigen</label></section>
+<section class="panel wave2"><h2>Welle 2</h2>
+<label class="field">Amplitude A₂ <span>m</span><input id="A2" inputmode="decimal" value="1,0"></label>
+<label class="field">Wellenlänge λ₂ <span>m</span><input id="lambda2" inputmode="decimal" value="4,0"></label>
+<label class="field">Frequenz f₂ <span>Hz</span><input id="f2" inputmode="decimal" value="0,32"></label>
+<fieldset><legend>Ausbreitung</legend><label><input type="radio" name="richtung2" value="1"> Von links nach rechts →</label><label><input type="radio" name="richtung2" value="-1" checked> Von rechts nach links ←</label></fieldset>
+<fieldset><legend>Startform</legend><label><input type="radio" name="vorzeichen2" value="1" checked> + sin</label><label><input type="radio" name="vorzeichen2" value="-1"> − sin</label></fieldset>
+<label class="check"><input id="zeige2" type="checkbox" checked> Welle 2 anzeigen</label></section>
+<section class="panel"><h2>Überlagerung</h2><label class="check"><input type="checkbox" id="summe"> Überlagerung y₁ + y₂ anzeigen</label><p class="hint">Die Summe wird nur dort gezeichnet, wo beide Wellen angekommen sind.</p></section>
+<button type="button" id="uebernehmen" class="primary wide">Werte übernehmen / neu starten</button>
+<p class="hint">Zusammenhänge: ω = 2πf · v = f · λ</p></aside>
+<div class="display"><section class="panel plot-panel"><h2 id="plot-title">Ausbreitung und Überlagerung – t = 0,00 s</h2><div class="plot-wrap"><canvas id="diagramm" role="img" aria-label="Diagramm der beiden Wellen über dem Ort"></canvas></div><div id="legende" class="legend" aria-live="polite"></div></section>
+<section class="panel transport"><h2>Wellenausbreitung</h2><output id="zeit-label" for="zeit">t = 0,00 s | 0 %</output>
+<input aria-label="Zeitregler, 0 bis 200 Prozent" id="zeit" type="range" min="0" max="200" value="0" step="0.1">
+<div class="tick-labels"><span>0 %</span><span>100 %</span><span>200 %</span></div><div class="actions"><button id="play" type="button" class="primary">▶ Play</button><button id="reset" type="button">Zurück zum Start</button></div><p class="hint">100 %: Die langsamere Welle hat die gesamte Strecke durchlaufen. Play/Pause und der manuelle Regler sind frei kombinierbar.</p></section><p id="fehler" class="error" role="alert" hidden></p>
+</div></main><footer>KN-RBG · <a href="../../index.html">Zur Simulationsübersicht</a> · <a href="https://github.com/KN-RBG/Wellenueberlagerung">Python-Version auf GitHub</a></footer>
+</body></html>
