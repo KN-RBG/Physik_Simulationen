@@ -121,7 +121,7 @@ function tick(timestamp){
   if(lastFrame!==null){
     accum+=Math.max(0,timestamp-lastFrame);
     const steps=Math.floor(accum/25);
-    if(steps>0){accum-=steps*25;deg=((deg+steps*2)>720)?((deg+steps*2-2)%722):deg+steps*2;redraw()}
+    if(steps>0){accum-=steps*25;deg=(deg+steps*2)%722;redraw()}
   }
   lastFrame=timestamp;
   frame=requestAnimationFrame(tick);
