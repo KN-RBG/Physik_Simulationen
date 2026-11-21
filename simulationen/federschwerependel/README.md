@@ -13,7 +13,7 @@ Browserbasierte Portierung von `KN-RBG/Federschwerependel/federschwerependel_ani
 
 ## Bedienelemente wie in Python
 
-- Phase 0° bis 360°, 1°-Schritte; beim manuellen Verschieben automatische Pause.
+- Phase 0 bis 4π rad über zwei Perioden, Schrittweite π/180 rad; beim manuellen Verschieben automatische Pause.
 - Amplitude 0,01–0,15 m in 0,005-m-Schritten (Startwert 0,08 m).
 - Federhärte 8–25 N/m in 0,5-N/m-Schritten (Startwert 12 N/m).
 - Masse 0,10–0,40 kg in 0,01-kg-Schritten (Startwert 0,25 kg).
@@ -45,7 +45,7 @@ Die Python- und Browser-Version zeigen **direkt unter der Federanimation** ein Z
 
 Die Kurven liegen in einem gemeinsamen Diagramm, besitzen aber **getrennte, farbige y-Achsen mit realen Skalenwerten**, damit verschiedene physikalische Einheiten nicht auf einer einzigen Skala vermischt werden. Alle drei Verläufe lassen sich unabhängig per Checkbox ein- und ausblenden; eine vertikale gestrichelte Markierung zeigt den aktuellen Zeitpunkt.
 
-Beim manuellen Verschieben des Phasenreglers wird der Zeitpunkt innerhalb der **ersten Periode** gewählt. Während der automatischen Animation läuft die Markierung über beide Perioden und kehrt danach zum Anfang zurück.
+Beim manuellen Verschieben des Phasenreglers kann der Zeitpunkt über **beide Perioden** (0 bis 4π) gewählt werden. Während der automatischen Animation läuft die Markierung über beide Perioden und kehrt danach zum Anfang zurück. Die HTML-Version zeigt unter dem Diagramm keine zusätzliche Zeit-/Periodendauer-Beschriftung.
 
 ### Vergleichswerte für den Test (Grundeinstellung)
 
