@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fourier-Transformation – interaktive Simulationen</title><meta name="description" content="Fourier-Analyse periodischer Signale und animierte Fourier-Epizykel">
+<link rel="stylesheet" href="style.css"><script src="fourier1d.js" defer></script></head>
+<body>
+<header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Fourier-Transformation</h1><p>Periodische Signale aus harmonischen Schwingungen zusammensetzen und ihre Frequenzanteile untersuchen.</p></header>
+<nav class="subnav" aria-label="Fourier-Demonstrationen"><a class="active" aria-current="page" href="index.html">1D: Signal und Spektrum</a><a href="epizykel.html">2D: Fourier-Epizykel und Wortkontur</a></nav>
+<main>
+<section class="controls panel"><h2>Steuerung</h2>
+<label for="signal">Signal</label><select id="signal"><option>Sinus</option><option>Rechteck</option><option>Dreieck</option><option>Sägezahn</option></select>
+<label for="components">Fourier-Komponenten <output id="components-out">1</output></label>
+<div class="step-row"><button id="minus" type="button" aria-label="Eine Komponente weniger">− 1</button><input type="range" id="components" min="1" max="50" step="1" value="1"><button id="plus" type="button" aria-label="Eine Komponente mehr">+ 1</button></div>
+<div class="checks"><label><input id="original" type="checkbox" checked> Originalsignal</label><label><input id="sum" type="checkbox" checked> Fourier-Summe</label><label><input id="individual" type="checkbox" checked> Einzelne Komponenten (max. 12)</label></div>
+<label for="filter">Filter</label><select id="filter"><option>Alle</option><option>Tiefpass</option><option>Hochpass</option></select>
+<label for="cutoff">Grenzfrequenz <output id="cutoff-out">8</output></label><input id="cutoff" type="range" min="1" max="50" step="1" value="8" disabled>
+<p id="info" class="info" aria-live="polite">aktive Komponenten: 1 | RMS-Abweichung: 0,000</p>
+<p class="description">Die stärksten harmonischen Anteile werden zuerst ausgewählt. Der Filter begrenzt anschließend die berücksichtigten Frequenzen. Die Gleichanteil-Komponente wird – wie in der Python-Vorlage – beibehalten.</p>
+<p><a href="../../downloads/python/fourier/Fourier_1D_GUI.py" download>Python-Version dieser Demo herunterladen</a></p>
+</section>
+<section class="plots">
+<div class="panel"><h2 id="signal-title">1. Sinus: Original und Fourier-Näherung</h2><canvas id="signal-plot" width="850" height="380" aria-label="Originalsignal und Fourier-Rekonstruktion"></canvas><div class="legend"><span class="gray">Original</span><span class="purple">Fourier-Summe</span></div></div>
+<div class="panel"><h2 id="spectrum-title">2. Frequenzspektrum</h2><canvas id="spectrum-plot" width="850" height="380" aria-label="Frequenzspektrum und aktive Fourier-Komponenten"></canvas><div class="legend"><span class="gray">Frequenzanteile</span><span class="purple">Ausgewählt</span><span class="red">Grenzfrequenz</span></div></div>
+<div class="panel wide"><h2>3. Einzelne Fourier-Komponenten und ihre Summe</h2><canvas id="parts-plot" width="1300" height="365" aria-label="Einzelne harmonische Komponenten und ihre Summe"></canvas></div>
+</section>
+</main>
+<p class="takeaway">Fourier-Idee: Ein kompliziertes periodisches Signal kann als Summe einfacher Sinus- und Kosinusschwingungen beschrieben werden. Niedrige Frequenzen bestimmen vor allem die grobe Form, hohe Frequenzen feine Details und scharfe Kanten.</p>
+<footer><a href="../../index.html">Alle Simulationen</a> · <a href="epizykel.html">Zur Epizykel-Demo</a></footer>
+</body></html>
