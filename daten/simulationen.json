@@ -160,16 +160,16 @@
     },
     {
       "id": "sinus-geogebra",
-      "titel": "Sinusfunktion interaktiv",
+      "titel": "Sinus- und Cosinusfunktionen interaktiv",
       "thema": "Mechanische Schwingungen und Wellen",
-      "beschreibung": "Transformation der Sinusfunktion mit vier Parametern a, b, c und d",
+      "beschreibung": "Transformation von Sinus und Cosinus mit vier Parametern a, b, c und d",
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": null,
       "html_url": null,
       "webprojekt_url": "https://github.com/KN-RBG/Physik_Test_01",
       "status": "Python-Version zur Erprobung",
-      "hinweis": "Eigenständiges Matplotlib-Programm nach der GeoGebra-Vorlage mit den ursprünglichen vier Reglern, Einstellbereichen und Zurücksetzen-Taste; praktischer GUI-Test noch ausstehend.",
+      "hinweis": "Python-Version mit erklärten Parametern, unabhängigen Checkboxen für Sinus und Cosinus, Original-Reglerbereichen und Zurücksetzen. Grafischer Test noch ausstehend.",
       "python_public": null,
       "python_download_url": "downloads/python/sinus-geogebra/sinusfunktion.py"
     }
