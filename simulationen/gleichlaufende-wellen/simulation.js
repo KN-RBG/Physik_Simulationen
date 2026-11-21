@@ -109,9 +109,14 @@ for(const id of ["listener","distance","amp1","amp2","freq1","freq2","volume"]){
   $(id).addEventListener("input",()=>{outputs();draw()});
 }
 for(const id of ["show1","show2","showSum"])$(id).addEventListener("change",draw);
-for(const [button,value] of [["half",.5],["one-half",1.5]]){
-  $(button).addEventListener("click",()=>{$("distance").value=String(value);outputs();draw()});
-}
+// Fine intermediate values remain selectable; release near any half
+// reference wavelength snaps precisely to the intended special value.
+$("distance").addEventListener("change",()=>{
+  const value=N("distance");
+  const nearest=Math.round(value*2)/2;
+  if(Math.abs(value-nearest)<=0.03)$("distance").value=String(nearest);
+  outputs();draw();
+});
 $("play").addEventListener("click",()=>setRunning(!playing));
 $("reset").addEventListener("click",()=>{
   for(const [id,v] of Object.entries({listener:5,distance:.25,amp1:1,amp2:1,freq1:.6,freq2:.6,volume:.25}))$(id).value=String(v);
