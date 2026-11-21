@@ -5,6 +5,7 @@
 <title>Federschwerependel: Bewegung und Kräfte</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#182c40;background:#f4f7fa}*{box-sizing:border-box}body{margin:0}header{background:#183650;color:white;padding:1.3rem clamp(1rem,4vw,3rem)}header h1{margin:.4rem 0;font-size:clamp(1.4rem,3vw,2rem)}header p{color:#d4e6f4;margin:.3rem 0}header a{color:#b9e9f3}main{max-width:1400px;margin:auto;padding:1rem;display:grid;grid-template-columns:minmax(330px,1.3fr) minmax(300px,.8fr);gap:1rem}.panel{background:white;border:1px solid #d4e0ea;border-radius:14px;padding:1.1rem;margin-bottom:1rem}.panel h2{margin:.15rem 0 .8rem;font-size:1.08rem}.display{min-width:0}.stage{width:100%;max-width:780px;margin:auto}svg{display:block;width:100%;height:auto}label.control{display:block;margin:1.2rem 0}label.control>span{display:flex;justify-content:space-between;gap:.5rem;font-weight:650}input[type=range]{width:100%;accent-color:#087f9c;margin:.8rem 0 .15rem}output{font-variant-numeric:tabular-nums;font-weight:600}fieldset{border:1px solid #d6e1e9;border-radius:8px;margin:1rem 0;padding:.9rem}fieldset legend{font-weight:700}fieldset label{display:block;margin:.45rem 0}input[type=checkbox]{accent-color:#087f9c}.action{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}button{border:1px solid #0b7995;background:#0b7995;color:white;padding:.6rem 1.3rem;border-radius:8px;font-weight:700;cursor:pointer;font:inherit}button:focus-visible,input:focus-visible{outline:3px solid #e5a43e;outline-offset:3px}.description{color:#53687b;font-size:.91rem;line-height:1.6}dl{display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;margin:0}dt{color:#44596f}dd{margin:0;font-variant-numeric:tabular-nums;font-weight:650}.fblue{color:#206ea7}.fred{color:#bf4141}.forange{color:#b46a16}.fpurple{color:#864da8}footer{max-width:1400px;margin:auto;padding:0 2rem 2rem;font-size:.9rem}footer a{color:#0a6c8c}@media(max-width:900px){main{display:block}.stage{max-width:600px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+.time-graph{margin-top:.9rem;border-top:1px solid #dde7ee;padding-top:1rem}.time-graph h2{margin:.2rem 0 .7rem}.curve-toggles{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;font-weight:650}.curve-toggles label{cursor:pointer}.curve-toggles input{accent-color:currentColor}.time-graph svg{background:#fff;border:1px solid #edf1f5;border-radius:8px}
 </style>
 <script src="simulation.js" defer></script></head>
 <body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Federschwerependel: Bewegung und Kräfte</h1><p>Auslenkung, Gleichgewichtslage sowie Gewichtskraft, Federkraft und resultierende Kraft untersuchen.</p></header>
@@ -24,7 +25,17 @@
 <g id="resultierende"><line id="fres" stroke="#d3852b" stroke-width="4" marker-end="url(#arrow-orange)"/><text id="frestext" fill="#bb7624" font-size="18" text-anchor="end">Fᵣₑₛ</text></g>
 <line id="auslenkung" stroke="#8853a9" stroke-width="2.5" marker-start="url(#arrow-purple)" marker-end="url(#arrow-purple)"/>
 <text id="stext" fill="#8853a9" font-size="19">s</text>
-</svg></div></section>
+</svg></div>
+<div class="time-graph">
+<h2>Zeitdiagramm: Auslenkung, Geschwindigkeit und Beschleunigung</h2>
+<svg id="zeitdiagramm" viewBox="0 0 740 290" role="img" aria-label="Zeitdiagramm von Auslenkung in Metern, Geschwindigkeit in Metern pro Sekunde und Beschleunigung in Metern pro Quadratsekunde, über zwei Perioden mit aktuellen Zeitmarkern"></svg>
+<div class="curve-toggles">
+<label class="fpurple"><input id="kurve-s" type="checkbox" checked> s(t) [m]</label>
+<label class="fblue"><input id="kurve-v" type="checkbox" checked> v(t) [m/s]</label>
+<label class="forange"><input id="kurve-a" type="checkbox" checked> a(t) [m/s²]</label>
+</div>
+<p class="description">Zwei Perioden; jede Kurve besitzt eine eigene, farblich zugeordnete Skala mit realen Messgrößen. Die gestrichelte Linie kennzeichnet den aktuellen Schwingungszeitpunkt.</p>
+</div></section>
 <div>
 <section class="panel"><h2>Steuerung</h2>
 <label class="control" for="phase"><span>Phase φ <output id="phase-out">0°</output></span><input type="range" id="phase" min="0" max="360" step="1" value="0"></label>
