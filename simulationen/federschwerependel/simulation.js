@@ -23,13 +23,10 @@ function draw(){
   const L=L_eq-s; // upper displacement positive
   const Fg=m*g,Ff=D*(L-L0),Fres=Fg-Ff;
   const massY=yPx(L),eqY=yPx(L_eq);
-  const cycle=2*Math.PI;
-  const twoCycles=4*Math.PI;
-  const displayPhase=paused ? phase : ((phase%twoCycles)+twoCycles)%twoCycles;
-  const degrees=Math.round(displayPhase*180/Math.PI);
-  $("phase").value=String(Math.min(720,degrees));
-  const rad=Number($("phase").value)*Math.PI/180;
-  $("phase-out").textContent=fmt(rad,2)+" rad ("+fmt(rad/Math.PI,2)+"π)";
+  // Sliderwerte sind direkt in Radiant; zwei volle Schwingungen 0 ... 4π.
+  const full=4*Math.PI;
+  const displayPhase=paused ? Math.max(0,Math.min(full,phase)) : ((phase%full)+full)%full;
+  $("phase").value=String(displayPhase);
   $("amplitude-out").textContent=fmt(A,3)+" m";
   $("federhaerte-out").textContent=fmt(D,1)+" N/m";
   $("masse-out").textContent=fmt(m,2)+" kg";
@@ -167,7 +164,7 @@ function frame(now){
 $("play").addEventListener("click",()=>setPaused(!paused));
 $("phase").addEventListener("input",()=>{
   setPaused(true);
-  phase=Number($("phase").value)*Math.PI/180;
+  phase=Number($("phase").value);
   elapsed=phase/Math.sqrt(N("federhaerte")/N("masse-regler"));
   draw();
 });
