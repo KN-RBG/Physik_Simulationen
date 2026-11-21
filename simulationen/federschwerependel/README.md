@@ -34,3 +34,28 @@ Browserbasierte Portierung von `KN-RBG/Federschwerependel/federschwerependel_ani
 ## Status
 
 HTML-Version implementiert, aber noch **nicht vollständig visuell auf Desktop und Tablet getestet**. Die private Python-Entwicklungsversion bleibt unverändert. Öffentlicher Python-Download steht im Portal bereit.
+
+## Ergänzung: Zeitdiagramm s(t), v(t), a(t)
+
+Die Python- und Browser-Version zeigen **direkt unter der Federanimation** ein Zeitdiagramm über **zwei vollständige Perioden** (`0 ≤ t ≤ 2T`; `T = 2π√(m/D)`):
+
+- `s(t) = A cos(ωt)` in **m** (violett).
+- `v(t) = −Aω sin(ωt)` in **m/s** (blau).
+- `a(t) = −Aω² cos(ωt)` in **m/s²** (orange).
+
+Die Kurven liegen in einem gemeinsamen Diagramm, besitzen aber **getrennte, farbige y-Achsen mit realen Skalenwerten**, damit verschiedene physikalische Einheiten nicht auf einer einzigen Skala vermischt werden. Alle drei Verläufe lassen sich unabhängig per Checkbox ein- und ausblenden; eine vertikale gestrichelte Markierung zeigt den aktuellen Zeitpunkt.
+
+Beim manuellen Verschieben des Phasenreglers wird der Zeitpunkt innerhalb der **ersten Periode** gewählt. Während der automatischen Animation läuft die Markierung über beide Perioden und kehrt danach zum Anfang zurück.
+
+### Vergleichswerte für den Test (Grundeinstellung)
+
+`A=0,08 m`, `D=12 N/m`, `m=0,25 kg`, `ω≈6,9282 rad/s`, `T≈0,9069 s`:
+
+| Phase | s [m] | v [m/s] | a [m/s²] |
+|---|---:|---:|---:|
+| 0° | +0,080 | 0,000 | −3,840 |
+| 90° | 0,000 | −0,554 | 0,000 |
+| 180° | −0,080 | 0,000 | +3,840 |
+| 270° | 0,000 | +0,554 | 0,000 |
+
+Die Werte ergeben sich aus den analytischen Formeln; der visuelle Test auf den Zielgeräten steht noch aus.
