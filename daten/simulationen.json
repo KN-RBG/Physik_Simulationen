@@ -107,10 +107,10 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/schwingkreis_-vergleich",
-      "html_url": null,
+      "html_url": "simulationen/schwingkreis-vergleich/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Version zur Erprobung",
+      "hinweis": "Erste HTML-Version mit synchronem LC-Schwingkreis und Federschwinger, Energieverteilung, Phasenregler, Tempo und Viertelperiodenschritten. Fachlicher und visueller Vergleichstest mit Python-Version noch ausstehend.",
       "python_public": true,
       "python_download_url": "downloads/python/schwingkreis-vergleich/schwingkreis_vergleich.py"
     },
