@@ -14,8 +14,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/elektrische-feldlinien/elektrische_feldlinien.py"
     },
     {
       "id": "wellenueberlagerung",
@@ -28,8 +29,9 @@
       "html_url": "simulationen/wellenueberlagerung/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet.",
-      "python_public": false
+      "hinweis": "Python und HTML vorhanden; praktischer Vergleichstest im Unterricht ausstehend. Klassenstufen/G8-G9 noch nicht zugeordnet. Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/wellenueberlagerung/Ueberlagerung_Wellen.py"
     },
     {
       "id": "gleichlaufende-wellen",
@@ -42,8 +44,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": true
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": true,
+      "python_download_url": "downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py"
     },
     {
       "id": "mehrfachspalt",
@@ -56,8 +59,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/mehrfachspalt/Mehrfachspalt_GUI.py"
     },
     {
       "id": "zeigerdiagramm",
@@ -70,8 +74,9 @@
       "html_url": "simulationen/zeigerdiagramm/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft.",
-      "python_public": false
+      "hinweis": "Python und HTML verfügbar. Visueller Browser-/Gerätetest und Vergleich der Animation ausstehend; Klassenstufen und G8/G9 noch nicht geprüft. Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/zeigerdiagramm/zeigerdiagramm.py"
     },
     {
       "id": "federschwerependel",
@@ -84,8 +89,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/federschwerependel/federschwerependel_animation.py"
     },
     {
       "id": "schwingkreis-vergleich",
@@ -98,8 +104,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": true
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": true,
+      "python_download_url": "downloads/python/schwingkreis-vergleich/schwingkreis_vergleich.py"
     },
     {
       "id": "fourier",
@@ -112,8 +119,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/fourier/Fourier_1D_GUI.py"
     },
     {
       "id": "motorkennlinie",
@@ -126,8 +134,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/motorkennlinie/Kennlinie_Schieberegler.py"
     },
     {
       "id": "sternbilder",
@@ -140,8 +149,9 @@
       "html_url": null,
       "webprojekt_url": null,
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Python-Download erst nach Prüfung der Astronomie-Abhängigkeiten und Datenabfragen; privates Entwicklungsprojekt.",
+      "python_public": false,
+      "python_download_url": null
     },
     {
       "id": "geogebra-wellen",
@@ -154,8 +164,9 @@
       "html_url": null,
       "webprojekt_url": "https://github.com/KN-RBG/Geogebra_Test",
       "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": false
+      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "python_public": false,
+      "python_download_url": "downloads/python/wellenueberlagerung/Ueberlagerung_Wellen.py"
     },
     {
       "id": "sinus-geogebra",
@@ -169,7 +180,8 @@
       "webprojekt_url": "https://github.com/KN-RBG/Physik_Test_01",
       "status": "ungeprüft",
       "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft",
-      "python_public": null
+      "python_public": null,
+      "python_download_url": null
     }
   ]
 }
