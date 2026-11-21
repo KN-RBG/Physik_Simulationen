@@ -31,7 +31,7 @@ function dftBluestein(re,im){
   const n=re.length;let size=1;while(size<2*n-1)size*=2;
   const ar=new Float64Array(size),ai=new Float64Array(size),br=new Float64Array(size),bi=new Float64Array(size);
   for(let k=0;k<n;k++){
-    const angle=PI*(k*k%n)/n,cs=Math.cos(angle),sn=Math.sin(angle);
+    const angle=PI*((k*k)%(2*n))/n,cs=Math.cos(angle),sn=Math.sin(angle);
     ar[k]=re[k]*cs+im[k]*sn;ai[k]=im[k]*cs-re[k]*sn;
     br[k]=cs;bi[k]=sn;
     if(k>0){br[size-k]=cs;bi[size-k]=sn;}
@@ -44,7 +44,7 @@ function dftBluestein(re,im){
   fft(ar,ai,true);
   const outR=new Float64Array(n),outI=new Float64Array(n);
   for(let k=0;k<n;k++){
-    const angle=PI*(k*k%n)/n,cs=Math.cos(angle),sn=Math.sin(angle);
+    const angle=PI*((k*k)%(2*n))/n,cs=Math.cos(angle),sn=Math.sin(angle);
     outR[k]=(ar[k]*cs+ai[k]*sn)/n;
     outI[k]=(ai[k]*cs-ar[k]*sn)/n;
   }
