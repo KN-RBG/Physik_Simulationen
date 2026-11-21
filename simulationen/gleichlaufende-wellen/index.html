@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gleichlaufende Wellen, Interferenz und Schwebung mit veränderlichem Senderabstand"><title>Gleichlaufende Wellen – Interferenz und Schwebung</title><link rel="stylesheet" href="style.css"><script src="simulation.js" defer></script></head>
+<body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Gleichlaufende Wellen – Interferenz und Schwebung</h1><p>Zwei räumlich getrennte Sender, ein verschiebbarer Hörpunkt und ein veränderlicher Erregerabstand.</p></header>
+<main><section class="panel plot-panel"><h2>Zwei getrennte Sender – gleichlaufende Wellen</h2><canvas id="plot" width="1080" height="520" role="img" aria-label="Wellen 1 und 2, Überlagerung, Senderpositionen und Hörpunkt als animiertes Ortsdiagramm"></canvas>
+<div class="legend"><span class="w1">— Welle 1</span><span class="w2">— Welle 2</span><span class="sum">— Gesamtwelle</span><span class="hear">⋮ Hörpunkt</span></div>
+<p id="info" class="info">λ₁ = 1,00 λ₀ · λ₂ = 1,00 λ₀ · v = 0,60 λ₀/s · gleiche Frequenz</p>
+</section>
+<section class="panel controls"><h2>Parameter und Darstellung</h2>
+<div class="settings">
+<fieldset><legend>Positionen</legend>
+<label for="listener">Hörpunkt x<sub>H</sub> / λ₀ <output id="listener-out">5,00</output></label><input id="listener" type="range" min="0" max="10" step="0.05" value="5">
+<label for="distance">Abstand d / λ₀ <output id="distance-out">0,25</output></label><input id="distance" type="range" min="0" max="2" step="0.01" value="0.25">
+<div class="presets"><button type="button" id="half">d = 0,5 λ₀</button><button type="button" id="one-half">d = 1,5 λ₀</button></div>
+</fieldset>
+<fieldset><legend>Amplituden</legend>
+<label for="amp1">A₁ <output id="amp1-out">1,00</output></label><input id="amp1" type="range" min="0" max="2" step="0.05" value="1">
+<label for="amp2">A₂ <output id="amp2-out">1,00</output></label><input id="amp2" type="range" min="0" max="2" step="0.05" value="1">
+</fieldset>
+<fieldset><legend>Frequenzen</legend>
+<label for="freq1">f₁ / Hz <output id="freq1-out">0,60</output></label><input id="freq1" type="range" min="0.2" max="1.5" step="0.01" value="0.6">
+<label for="freq2">f₂ / Hz <output id="freq2-out">0,60</output></label><input id="freq2" type="range" min="0.2" max="1.5" step="0.01" value="0.6">
+</fieldset>
+<fieldset><legend>Anzeige</legend>
+<label class="check w1"><input id="show1" type="checkbox" checked> Welle 1</label>
+<label class="check w2"><input id="show2" type="checkbox" checked> Welle 2</label>
+<label class="check sum"><input id="showSum" type="checkbox" checked> Gesamtwelle</label>
+</fieldset>
+<fieldset><legend>Ton (optional)</legend><label class="check"><input id="sound" type="checkbox"> Ton an</label>
+<label for="volume">Lautstärke <output id="volume-out">0,25</output></label><input id="volume" type="range" min="0" max="1" step="0.01" value="0.25"><p id="sound-status" class="small" aria-live="polite">Ton: aus</p></fieldset>
+</div>
+<div class="actions"><button id="play" type="button">⏸ Pause</button><button id="reset" type="button">↺ Reset</button><span id="status" aria-live="polite">Simulation läuft</span></div>
+<p class="small">Die Abstände beziehen sich auf die Referenzwellenlänge λ₀. Für f₁ = f₂ = 0,60 Hz gilt λ₁ = λ₂ = λ₀. Der Ton verwendet einen hörbaren 400-Hz-Träger, dessen Interferenz dem Modell am Hörpunkt folgt.</p>
+</section></main><footer><a href="../../downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py" download>Python-Version herunterladen</a> · <a href="../../index.html">Alle Simulationen</a></footer></body></html>
