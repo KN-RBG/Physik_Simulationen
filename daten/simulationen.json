@@ -11,10 +11,10 @@
       "klassenstufen": [],
       "bildungsgaenge": [],
       "python_url": "https://github.com/KN-RBG/elektrische_Feldlinien",
-      "html_url": null,
+      "html_url": "simulationen/elektrische-feldlinien/index.html",
       "webprojekt_url": null,
-      "status": "ungeprüft",
-      "hinweis": "Klassenstufen und G8/G9 noch nicht didaktisch geprüft Öffentliche Python-Kopie verfügbar; grafischer Funktionstest und manuelle Freigabe noch ausstehend.",
+      "status": "Browser-Prototyp zur Erprobung",
+      "hinweis": "Erste interaktive HTML-Version mit Punktladungen, Plattenkondensator und Platte mit Punktladung vorhanden. Numerische Feldlinien und Darstellung noch fachlich sowie auf Endgeräten zu prüfen. Python-Version unverändert.",
       "python_public": false,
       "python_download_url": "downloads/python/elektrische-feldlinien/elektrische_feldlinien.py"
     },
