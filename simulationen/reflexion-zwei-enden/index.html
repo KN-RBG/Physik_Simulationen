@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reflexion an zwei Enden – Eigenschwingungen entdecken</title>
+<style>
+:root{font-family:system-ui,"Segoe UI",sans-serif;color:#23374c;background:#f5f8fb}*{box-sizing:border-box}body{margin:0;padding:1.2rem}main{max-width:1200px;margin:auto}h1{font-size:clamp(1.3rem,2.8vw,2rem);margin:.2rem 0 1rem}.layout{display:grid;grid-template-columns:minmax(0,3fr) minmax(230px,1fr);gap:1.4rem}.panel{background:#fff;border:1px solid #d9e3ed;border-radius:12px;padding:1.2rem;min-width:0}canvas{display:block;width:100%;height:auto;aspect-ratio:1.85;border:1px solid #dce5ee;border-radius:6px}.status{margin:1rem 0 .65rem;line-height:1.6;font-variant-numeric:tabular-nums}.hint{color:#228b62;margin:0 0 1.2rem}.actions{display:flex;gap:.65rem;margin:1rem 0}button{cursor:pointer;border:1px solid #9bafc2;background:#f2f6fa;color:#23374c;border-radius:7px;padding:.55rem .95rem;font:inherit}.setting{display:grid;grid-template-columns:115px minmax(0,1fr) 88px;gap:.7rem;align-items:center;margin:1.15rem 0}.setting input[type=range]{width:100%}.setting input[type=number]{width:100%;padding:.45rem;border:1px solid #9bafc2;border-radius:6px;font:inherit}.setting .value{font-variant-numeric:tabular-nums}fieldset{border:0;padding:0;margin:0 0 1.3rem}legend{font-weight:700;margin-bottom:.7rem}fieldset label{display:block;margin:.55rem 0;cursor:pointer}.help{font-size:.93rem;color:#51677a;line-height:1.55}.legend{font-size:.91rem;line-height:1.6}input:focus-visible,button:focus-visible{outline:3px solid #c58a2b;outline-offset:2px}@media(max-width:850px){.layout{grid-template-columns:1fr}.setting{grid-template-columns:100px minmax(0,1fr) 76px}}@media(max-width:450px){body{padding:.5rem}.panel{padding:.65rem}.setting{grid-template-columns:90px minmax(0,1fr) 70px;gap:.35rem;font-size:.85rem}}
+</style></head><body><main><h1>Reflexion an zwei Enden – Eigenschwingungen entdecken</h1><div class="layout">
+<section class="panel"><canvas id="plot" width="1000" height="540" role="img" aria-label="Animiertes Wellenbild zwischen zwei Enden"></canvas>
+<p class="status" id="status"></p>
+<p class="hint">Hinweis: Grünes Wellenbild und Amplitude 3: Eigenschwingung erreicht.</p>
+<div class="actions"><button id="play">Pause</button><button id="reset">Neu starten</button></div>
+<div class="setting"><label for="lambda">Wellenlänge λ</label><input id="lambda" type="range" min="1" max="48" step=".01" value="16"><input id="lambdaNumber" type="number" min="1" max="48" step="any" value="16" aria-label="Wellenlänge direkt eingeben"></div>
+<div class="setting"><label for="length">Länge l</label><input id="length" type="range" min="2" max="12" step=".05" value="8"><input id="lengthNumber" type="number" min="2" max="12" step="any" value="8" aria-label="Länge direkt eingeben"></div>
+<div class="setting"><label for="speed">Tempo</label><input id="speed" type="range" min=".25" max="12" step=".25" value="3"><output class="value" id="speedValue">3,00</output></div>
+<p class="help">Direkte Eingabe: Länge l und Wellenlänge λ können rechts neben den Schiebereglern eingegeben und mit Enter bestätigt werden.</p>
+</section><aside class="panel">
+<fieldset><legend>Randbedingungen</legend><label><input type="radio" name="case" value="ff" checked> fest–fest</label><label><input type="radio" name="case" value="ll"> lose–lose</label><label><input type="radio" name="case" value="fl"> fest–lose</label></fieldset>
+<fieldset><legend>Beobachtung</legend><label><input id="trails" type="checkbox" checked> Nachleuchten</label></fieldset>
+<p class="legend">Blau: übrige Wellenbilder<br>Grün: Eigenschwingung<br>Blass: frühere Wellenbilder</p><p class="help">Bei einer Parameteränderung wird der eingeschwungene Zustand direkt angezeigt. Versuche, die Eigenschwingungen durch Variation von l und λ zu entdecken.</p>
+</aside></div></main>
+<script>
+"use strict";
+const C=1,N=35,DAMPING=.045,TARGET=3,BLUE="#2464c5",GREEN="#228b62";
+const $=id=>document.getElementById(id);
+const canvas=$("plot"),ctx=canvas.getContext("2d");
+let L=8,lambda=16,kind="ff",speed=3,playing=true,t=0,lastTime=null,lastTrail=-1e30;
+let modes=[],trail=[],sampleCount=500,omega=0,profileR=[],profileI=[],gamma=0;
+const x=Array.from({length:sampleCount},(_,i)=>i/(sampleCount-1));
+function eigenLambda(n){return kind==="fl"?4*L/(2*n-1):2*L/n}
+function nearest(){let best=1,err=Infinity;for(let n=1;n<=N;n++){const e=Math.abs(lambda-eigenLambda(n));if(e<err){err=e;best=n}}return eigenLambda(best)}
+function recompute(){
+ omega=2*Math.PI*C/lambda;gamma=DAMPING*Math.PI*C/L;
+ const kref=kind==="fl"?Math.PI/(2*L):Math.PI/L;
+ let nearestIdx=0,min=Infinity;
+ for(let j=0;j<N;j++){const k=(j+1-(kind==="fl"?.5:0))*Math.PI/L;const d=Math.abs(k-omega);if(d<min){min=d;nearestIdx=j}}
+ const oref=(nearestIdx+1-(kind==="fl"?.5:0))*Math.PI/L;
+ const width=.42*Math.PI/L;
+ modes=[];
+ for(let j=0;j<N;j++){
+  const k=(j+1-(kind==="fl"?.5:0))*Math.PI/L;
+  const w=Math.exp(-.5*((k-oref)/width)**2);
+  const force=TARGET*2*gamma*oref*w;
+  const a=k*k-omega*omega,b=2*gamma*omega,den=a*a+b*b;
+  const ae=k*k-oref*oref,be=2*gamma*oref,dene=ae*ae+be*be;
+  modes.push({k,re:force*a/den,im:-force*b/den,refR:force*ae/dene,refI:-force*be/dene});
+ }
+ // Normalize against the complex spatial amplitude envelope at the selected resonance.
+ let peak=0;
+ for(const u of x){let re=0,im=0;for(const m of modes){const phi=kind==="ll"?Math.cos(m.k*L*u):Math.sin(m.k*L*u);re+=m.refR*phi;im+=m.refI*phi}peak=Math.max(peak,Math.hypot(re,im))}
+ const scale=peak>0?TARGET/peak:1;
+ profileR=new Float64Array(sampleCount);profileI=new Float64Array(sampleCount);
+ for(let i=0;i<sampleCount;i++){let re=0,im=0;for(const m of modes){const phi=kind==="ll"?Math.cos(m.k*L*x[i]):Math.sin(m.k*L*x[i]);re+=m.re*phi;im+=m.im*phi}profileR[i]=re*scale;profileI[i]=im*scale}
+ // The Python version starts after the transient has decayed.
+ t=7/gamma;trail=[];lastTrail=-1e30;
+ $("status").textContent="l = "+L.toFixed(2)+" m     λ = "+lambda.toFixed(2)+" m     f = "+(C/lambda).toFixed(4)+" Hz     (c = 1,0 m/s)";
+ draw();
+}
+function displacement(){const a=Math.cos(omega*t),b=Math.sin(omega*t);const y=new Float64Array(sampleCount);for(let i=0;i<sampleCount;i++)y[i]=profileR[i]*a-profileI[i]*b;return y}
+function draw(){
+ const W=canvas.width,H=canvas.height,pad={left:78,right:24,top:40,bottom:62},w=W-pad.left-pad.right,h=H-pad.top-pad.bottom;
+ const px=u=>pad.left+u*w,py=v=>pad.top+(4.2-v)/8.4*h;
+ ctx.clearRect(0,0,W,H);ctx.fillStyle="#fff";ctx.fillRect(0,0,W,H);
+ ctx.strokeStyle="#e8eef3";ctx.lineWidth=1;
+ for(let j=-4;j<=4;j++){ctx.beginPath();ctx.moveTo(pad.left,py(j));ctx.lineTo(W-pad.right,py(j));ctx.stroke()}
+ ctx.strokeStyle="#27394b";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(pad.left,py(0));ctx.lineTo(W-pad.right,py(0));ctx.stroke();
+ ctx.fillStyle="#27394b";ctx.font="18px system-ui";ctx.textAlign="center";
+ ctx.fillText("Ort x",pad.left+w/2,H-12);
+ ctx.save();ctx.translate(20,pad.top+h/2);ctx.rotate(-Math.PI/2);ctx.fillText("Auslenkung (relative Einheiten)",0,0);ctx.restore();
+ ctx.font="15px system-ui";ctx.textAlign="right";
+ for(let j=-4;j<=4;j+=2)ctx.fillText(String(j),pad.left-12,py(j)+5);
+ ctx.strokeStyle="#27394b";ctx.lineWidth=3;
+ for(const u of [0,1]){ctx.beginPath();ctx.moveTo(px(u),pad.top);ctx.lineTo(px(u),pad.top+h);ctx.stroke()}
+ ctx.fillStyle="#27394b";ctx.textAlign="center";ctx.font="18px system-ui";
+ ctx.fillText(kind==="ll"?"lose":"fest",px(0),pad.top-13);
+ ctx.fillText(kind==="ff"?"fest":"lose",px(1),pad.top-13);
+ const y=displacement(),green=Math.abs(lambda-nearest())/nearest()<.002,color=green?GREEN:BLUE;
+ if(t-lastTrail>=lambda/(12*C)){trail.push(y);if(trail.length>9)trail.shift();lastTrail=t}
+ function curve(values,alpha,lineWidth){ctx.beginPath();for(let i=0;i<sampleCount;i++){const X=px(x[i]),Y=py(values[i]);if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y)}ctx.strokeStyle=color;ctx.globalAlpha=alpha;ctx.lineWidth=lineWidth;ctx.stroke()}
+ if($("trails").checked)trail.forEach((v,i)=>curve(v,.07+.055*i,1.6));
+ curve(y,1,3.6);ctx.globalAlpha=1;
+}
+function sync(id,num,val){$(id).value=String(val);$(num).value=val.toFixed(2)}
+function apply(id,num,which,value){if(!Number.isFinite(value))return;const slider=$(id);if(value<Number(slider.min)||value>Number(slider.max))return; if(which==="l")L=value;else lambda=value;sync(id,num,value);recompute()}
+for(const [id,num,which] of [["lambda","lambdaNumber","lambda"],["length","lengthNumber","l"]]){
+ $(id).addEventListener("input",()=>apply(id,num,which,Number($(id).value)));
+ $(num).addEventListener("change",()=>{const v=Number($(num).value.replace(",","."));if($(num).value.trim()&&Number.isFinite(v)&&v>=Number($(id).min)&&v<=Number($(id).max))apply(id,num,which,v);else sync(id,num,which==="l"?L:lambda)});
+ $(num).addEventListener("keydown",e=>{if(e.key==="Enter")$(num).blur()});
+}
+$("speed").addEventListener("input",()=>{speed=Number($("speed").value);$("speedValue").textContent=speed.toFixed(2).replace(".",",")});
+document.querySelectorAll('input[name="case"]').forEach(el=>el.addEventListener("change",()=>{if(el.checked){kind=el.value;recompute()}}));
+$("trails").addEventListener("change",draw);
+$("play").addEventListener("click",()=>{playing=!playing;$("play").textContent=playing?"Pause":"Start";lastTime=null});
+$("reset").addEventListener("click",()=>recompute());
+function frame(now){if(lastTime!==null&&playing){t+=Math.min(.1,(now-lastTime)/1000)*speed;draw()}lastTime=playing?now:null;requestAnimationFrame(frame)}
+recompute();requestAnimationFrame(frame);
+</script></body></html>
