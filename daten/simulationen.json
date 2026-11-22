@@ -232,6 +232,26 @@
       "python_public": true,
       "python_download_url": "downloads/python/reflexion-wellenende/reflexion_wellenende.py",
       "qr_url": "assets/qr/reflexion-wellenende.svg"
+    },
+    {
+      "id": "reflexion-zwei-enden",
+      "titel": "Reflexion an zwei Enden – Eigenschwingungen",
+      "thema": "Mechanische Schwingungen und Wellen",
+      "beschreibung": "Eigenschwingungen bei festen und losen Enden durch Variation von Länge und Wellenlänge entdecken; Resonanz wird grün markiert, mit Nachleuchten und direkter Zahleneingabe.",
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
+      "python_url": "https://github.com/KN-RBG/Reflexion_an_zwei_Enden",
+      "html_url": "simulationen/reflexion-zwei-enden/index.html",
+      "webprojekt_url": null,
+      "status": "Python-Version freigegeben; Browser-Version veröffentlicht",
+      "hinweis": "Python-Version vom Nutzer freigegeben. Browser-Version nach derselben idealisierten modalen Resonanzdarstellung erstellt; visueller und geräteübergreifender Praxistest noch ausstehend.",
+      "python_public": true,
+      "python_download_url": "downloads/python/reflexion-zwei-enden/reflexion_zwei_enden.py",
+      "qr_url": "assets/qr/reflexion-zwei-enden.svg"
     }
   ]
 }
