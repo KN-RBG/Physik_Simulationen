@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "stand": "2026-11-21",
+  "stand": "2026-11-22",
   "hinweis": "Bestehende Physik-Simulationen sind G8 zugeordnet; elektrische und magnetische Felder, Induktion und mechanische Schwingungen JG1, mechanische Wellen und übrige Physikthemen JG2. Fachfremde Projekte bleiben ausgeblendet und ohne Zuordnung.",
   "simulationen": [
     {
@@ -212,6 +212,26 @@
       "python_public": null,
       "python_download_url": "downloads/python/sinus-geogebra/sinusfunktion.py",
       "qr_url": "assets/qr/sinusfunktion.svg"
+    },
+    {
+      "id": "reflexion-wellenende",
+      "titel": "Reflexion von Wellen am festen und losen Ende",
+      "thema": "Mechanische Schwingungen und Wellen",
+      "beschreibung": "Konstruktion einlaufender, virtueller und reflektierter Wellen sowie ihrer Überlagerung; festes und loses Ende, Sinus und Minus Sinus",
+      "klassenstufen": [
+        "JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
+      "python_url": "https://github.com/KN-RBG/Reflexion_von_Wellen",
+      "html_url": "simulationen/reflexion-wellenende/index.html",
+      "webprojekt_url": null,
+      "status": "Browser-Version veröffentlicht",
+      "hinweis": "Python-Version freigegeben; HTML-Umsetzung mit Zeitsteuerung, Wellenlänge, festen/losen Enden, Sinus/Minus Sinus und einzeln schaltbaren Wellen. Browser-/Gerätetest noch ausstehend.",
+      "python_public": true,
+      "python_download_url": "downloads/python/reflexion-wellenende/reflexion_wellenende.py",
+      "qr_url": "assets/qr/reflexion-wellenende.svg"
     }
   ]
 }
