@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reflexion von Wellen am Ende</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#203548;background:#f3f7fa}*{box-sizing:border-box}
+body{margin:0}header{background:#173b56;color:white;padding:1rem max(1rem,calc((100vw - 1320px)/2))}
+header a{color:#d4eafc}h1{font-size:clamp(1.35rem,3vw,1.9rem);margin:.55rem 0 .3rem}header p{margin:.2rem 0}
+main{max-width:1320px;margin:auto;padding:1rem}.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:1rem}
+.panel{background:white;border:1px solid #d5e0e9;border-radius:10px;padding:1rem;min-width:0}
+canvas{width:100%;height:auto;display:block;touch-action:pan-y}
+h2{font-size:1rem;margin:.25rem 0 .7rem}.options{display:grid;gap:.55rem;margin-bottom:1.3rem}
+.option{display:flex;align-items:center;gap:.55rem;cursor:pointer;min-height:30px}
+.option input{accent-color:#2466aa;width:1.05rem;height:1.05rem;margin:0;flex:none}
+.controls{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0}
+button{font:inherit;border:1px solid #a8c0d3;background:#e7f2fb;color:#163c59;border-radius:7px;padding:.5rem .8rem;cursor:pointer}
+button:hover{background:#d4e9f9}button:focus-visible,input:focus-visible{outline:3px solid #77aee5;outline-offset:2px}
+.sliders{display:grid;gap:.8rem;max-width:850px}.slider-row{display:grid;grid-template-columns:145px 1fr 90px;align-items:center;gap:.7rem}
+input[type=range]{width:100%;accent-color:#2466aa}output{font-variant-numeric:tabular-nums;text-align:right}
+.legend{display:flex;gap:.8rem 1.3rem;flex-wrap:wrap;font-size:.9rem;margin:.5rem 0}.legend span{display:flex;align-items:center;gap:.35rem}
+.line{width:26px;border-top:3px solid var(--line)}.dashed{border-top-style:dashed}
+.note{font-size:.88rem;color:#526a7c;line-height:1.45}.status{margin:.4rem 0 0;font-size:.95rem}
+@media(max-width:780px){.layout{grid-template-columns:1fr}.options{grid-template-columns:repeat(2,minmax(0,1fr))}.settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1rem}.settings section:last-child{grid-column:1/-1}}
+@media(max-width:480px){main{padding:.6rem}.panel{padding:.7rem}.slider-row{grid-template-columns:100px 1fr 70px;gap:.4rem;font-size:.85rem}.settings{grid-template-columns:1fr}.settings section:last-child{grid-column:auto}}
+</style></head><body>
+<header><a href="../../index.html">← Zur Simulationsübersicht</a><h1>Reflexion von Wellen am festen und losen Ende</h1><p>Einlaufende Welle, virtuelle Fortsetzung, reflektierter Anteil und Überlagerung</p></header>
+<main><div class="layout">
+<div class="panel"><canvas id="plot" width="1100" height="480" role="img" aria-label="Wellenbild mit Reflexionsende bei x gleich 8"></canvas>
+<div class="legend">
+<span><i class="line" style="--line:#2456df"></i>Einlaufende Welle</span>
+<span><i class="line dashed" style="--line:#2456df"></i>Virtuelle Fortsetzung</span>
+<span><i class="line" style="--line:#e04444"></i>Reflektierte Welle</span>
+<span><i class="line" style="--line:#258d55"></i>Überlagerung</span>
+</div>
+<p id="status" class="status" aria-live="off"></p>
+<div class="controls"><button id="play">Start</button><button id="back">− T/8</button><button id="forward">+ T/8</button><button id="reset">Zurücksetzen</button></div>
+<div class="sliders">
+<label class="slider-row"><span>Zeit t / T</span><input id="time" type="range" min="0" max="2.5" step=".0125" value="0"><output id="timeOut">0,000 T</output></label>
+<label class="slider-row"><span>Wellenlänge λ</span><input id="lambda" type="range" min="2" max="8" step=".1" value="4"><output id="lambdaOut">4,0</output></label>
+<label class="slider-row"><span>Tempo</span><input id="speed" type="range" min=".1" max="3" step=".1" value="1"><output id="speedOut">1,0×</output></label>
+</div></div>
+<aside class="panel settings">
+<section><h2>Randbedingung</h2><div class="options"><label class="option"><input type="checkbox" name="end" value="fixed" checked>Festes Ende</label><label class="option"><input type="checkbox" name="end" value="free">Loses Ende</label></div></section>
+<section><h2>Wellenform</h2><div class="options"><label class="option"><input type="checkbox" name="wave" value="sin" checked>Sinus</label><label class="option"><input type="checkbox" name="wave" value="minus">Minus Sinus</label></div></section>
+<section><h2>Darstellung</h2><div class="options"><label class="option"><input type="checkbox" id="incident" checked>Einlaufende Welle</label><label class="option"><input type="checkbox" id="virtual" checked>Virtuelle Welle</label><label class="option"><input type="checkbox" id="reflected" checked>Reflektierte Welle</label><label class="option"><input type="checkbox" id="total" checked>Überlagerung</label></div></section>
+</aside></div>
+<p class="note">Idealisierte, verlustfreie Reflexion. Die Wellenfront beginnt links vom Ende und erreicht es bei t = T/2. Die gestrichelte virtuelle Welle wird erst danach sichtbar. Die grüne Summenwelle erscheint nur dort, wo die Reflexion bereits angekommen ist. Die blaue einlaufende Welle bleibt zur Konstruktion sichtbar.</p>
+</main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id), canvas=$("plot"),ctx=canvas.getContext("2d");
+const WALL=8, SPEED=1, colors={incident:"#2456df",virtual:"#2456df",reflected:"#e04444",total:"#258d55"};
+let tau=0,lambda=4,rate=1,playing=false,fixed=true,minus=false,last=null;
+function wave(x,front){const phase=2*Math.PI*(x-front)/lambda;return (minus?1:-1)*Math.sin(phase);}
+function curve(x0,x1,fn,visible,color,dashed=false,width=2.8){
+ if(!visible||x1<x0)return;const n=Math.max(2,Math.ceil((x1-x0)*80));ctx.beginPath();
+ for(let i=0;i<=n;i++){const x=x0+(x1-x0)*i/n,y=fn(x);if(i===0)ctx.moveTo(X(x),Y(y));else ctx.lineTo(X(x),Y(y));}
+ ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dashed?[10,7]:[]);ctx.stroke();ctx.setLineDash([]);
+}
+const X=x=>65+x*(canvas.width-100)/16,Y=y=>canvas.height/2-y*75;
+function draw(){
+ const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);
+ ctx.font="17px system-ui";ctx.lineWidth=1;ctx.strokeStyle="#e0e8ee";ctx.fillStyle="#536779";ctx.textAlign="center";
+ for(let x=0;x<=16;x+=2){ctx.beginPath();ctx.moveTo(X(x),42);ctx.lineTo(X(x),h-44);ctx.stroke();ctx.fillText(String(x),X(x),h-18);}
+ for(let y=-2;y<=2;y++){ctx.beginPath();ctx.moveTo(X(0),Y(y));ctx.lineTo(X(16),Y(y));ctx.stroke();if(y!==0){ctx.textAlign="right";ctx.fillText(String(y),X(0)-12,Y(y)+6);ctx.textAlign="center";}}
+ ctx.strokeStyle="#283846";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(X(0),Y(0));ctx.lineTo(X(16),Y(0));ctx.stroke();
+ ctx.strokeStyle="#263849";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(WALL),45);ctx.lineTo(X(WALL),h-43);ctx.stroke();
+ ctx.textAlign="center";ctx.fillStyle="#283846";ctx.fillText("Reflexionsende: x = 8",X(WALL),32);
+ ctx.textAlign="left";ctx.fillText("s / A",13,35);ctx.textAlign="right";ctx.fillText("x",w-10,Y(0)-10);
+ const front=WALL+lambda*(tau-.5),reflectStart=2*WALL-front,hit=front>=WALL;
+ const leftFront=Math.min(WALL,front),rightFront=Math.min(16,front);
+ const enabled=id=>$(id).checked;
+ curve(0,leftFront,x=>wave(x,front),enabled("incident"),colors.incident);
+ if(hit){curve(WALL,rightFront,x=>wave(x,front),enabled("virtual"),colors.virtual,true,2.4);
+  const begin=Math.max(0,reflectStart);
+  const reflected=x=>(fixed?-1:1)*wave(2*WALL-x,front);
+  curve(begin,WALL,reflected,enabled("reflected"),colors.reflected);
+  curve(begin,WALL,x=>wave(x,front)+reflected(x),enabled("total"),colors.total,false,3.6);
+ }
+ const stage=hit?"Reflexion und Überlagerung":"Welle läuft zum Ende";
+ $("status").textContent=(minus?"Minus Sinus":"Sinus")+" · "+(fixed?"festes Ende":"loses Ende")+" · λ = "+lambda.toFixed(1).replace(".",",")+" · t = "+tau.toFixed(3).replace(".",",")+" T · "+stage;
+ $("timeOut").textContent=tau.toFixed(3).replace(".",",")+" T";
+ $("lambdaOut").textContent=lambda.toFixed(1).replace(".",",");
+ $("speedOut").textContent=rate.toFixed(1).replace(".",",")+"×";
+}
+function pause(){playing=false;$("play").textContent="Start";last=null;}
+function setTime(v){tau=Math.max(0,Math.min(2.5,Math.round(v*80)/80));$("time").value=String(tau);draw();}
+$("play").addEventListener("click",()=>{playing=!playing;$("play").textContent=playing?"Pause":"Start";last=null;});
+$("back").addEventListener("click",()=>{pause();setTime(tau-1/8);});
+$("forward").addEventListener("click",()=>{pause();setTime(tau+1/8);});
+$("reset").addEventListener("click",()=>{pause();setTime(0);});
+$("time").addEventListener("input",e=>{pause();setTime(Number(e.target.value));});
+$("lambda").addEventListener("input",e=>{lambda=Number(e.target.value);draw();});
+$("speed").addEventListener("input",e=>{rate=Number(e.target.value);draw();});
+for(const name of ["end","wave"]){const inputs=[...document.querySelectorAll('input[name="'+name+'"]')];inputs.forEach(input=>input.addEventListener("change",()=>{inputs.forEach(other=>other.checked=other===input);if(name==="end")fixed=input.value==="fixed";else minus=input.value==="minus";draw();}));}
+for(const id of ["incident","virtual","reflected","total"])$(id).addEventListener("change",draw);
+function animate(now){if(playing){if(last!==null){const delta=Math.min((now-last)/1000,.1);tau=Math.min(2.5,tau+delta*rate*SPEED/lambda);$("time").value=String(tau);draw();if(tau>=2.5)pause();}last=now;}requestAnimationFrame(animate);}
+draw();requestAnimationFrame(animate);
+</script></body></html>
