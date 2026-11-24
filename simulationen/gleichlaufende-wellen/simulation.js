@@ -17,6 +17,24 @@ function setup(){
   }
   ctx.setTransform(scale,0,0,scale,0,0);
 }
+function drawPhasors(p){
+  const cv=$("phasor"),g=cv.getContext("2d"),S=420,dpr=window.devicePixelRatio||1;
+  if(cv.width!==Math.round(S*dpr)||cv.height!==Math.round(S*dpr)){cv.width=Math.round(S*dpr);cv.height=Math.round(S*dpr)}
+  g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,S,S);
+  const center=210,scale=190/4.2;
+  const X=v=>center+v*scale,Y=v=>center-v*scale;
+  g.font="13px system-ui";g.fillStyle="#455f75";
+  for(let i=-4;i<=4;i++){g.strokeStyle=i===0?"#808d9a":"#e5ebf1";g.beginPath();g.moveTo(X(i),20);g.lineTo(X(i),400);g.moveTo(20,Y(i));g.lineTo(400,Y(i));g.stroke();if(i!==0){g.fillText(String(i),X(i)+3,center+15);g.fillText(String(i),center+5,Y(i)-4)}}
+  const phase1=2*Math.PI*p.f1*(p.xh/SPEED-clock),phase2=2*Math.PI*p.f2*((p.xh-p.d)/SPEED-clock);
+  const z1=[p.a1*Math.cos(phase1),p.a1*Math.sin(phase1)],z2=p.xh>=p.d?[p.a2*Math.cos(phase2),p.a2*Math.sin(phase2)]:[0,0];
+  const sum=[z1[0]+z2[0],z1[1]+z2[1]];
+  for(const [z,color,id] of [[z1,"#1976d2","show1"],[z2,"#e59b20","show2"],[sum,"#208c54","showSum"]]){
+    if(!$(id).checked||Math.hypot(...z)<1e-8)continue;
+    const x=X(z[0]),y=Y(z[1]),angle=Math.atan2(y-center,x-center);
+    g.strokeStyle=color;g.fillStyle=color;g.lineWidth=3;g.beginPath();g.moveTo(center,center);g.lineTo(x,y);g.stroke();
+    g.beginPath();g.moveTo(x,y);g.lineTo(x-12*Math.cos(angle-.45),y-12*Math.sin(angle-.45));g.lineTo(x-12*Math.cos(angle+.45),y-12*Math.sin(angle+.45));g.closePath();g.fill();
+  }
+}
 function draw(){
   setup();
   const p=data(),W=1080,H=520,L=85,R=1030,T=35,B=447, width=R-L,height=B-T;
@@ -58,6 +76,7 @@ function draw(){
   const hearY=wave(p.xh,clock,p,1)+(p.xh>=p.d?wave(p.xh,clock,p,2):0);
   ctx.save();ctx.strokeStyle="#7a3eb1";ctx.lineWidth=2;ctx.setLineDash([2,5]);ctx.beginPath();ctx.moveTo(X(p.xh),T);ctx.lineTo(X(p.xh),B);ctx.stroke();ctx.restore();
   ctx.fillStyle="#7a3eb1";ctx.beginPath();ctx.moveTo(X(p.xh),Y(hearY)-9);ctx.lineTo(X(p.xh)+9,Y(hearY));ctx.lineTo(X(p.xh),Y(hearY)+9);ctx.lineTo(X(p.xh)-9,Y(hearY));ctx.closePath();ctx.fill();
+  drawPhasors(p);
   const l1=SPEED/p.f1,l2=SPEED/p.f2,df=Math.abs(p.f1-p.f2);
   $("info").textContent="λ₁ = "+fmt(l1)+" λ₀     λ₂ = "+fmt(l2)+" λ₀     v = "+fmt(SPEED)+" λ₀/s     "+(df<1e-9?"gleiche Frequenz":"fSchwebung = "+fmt(df)+" Hz");
 }
