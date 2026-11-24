@@ -26,7 +26,7 @@ function drawPhasors(p){
   g.font="13px system-ui";g.fillStyle="#455f75";
   for(let i=-4;i<=4;i++){g.strokeStyle=i===0?"#808d9a":"#e5ebf1";g.beginPath();g.moveTo(X(i),20);g.lineTo(X(i),400);g.moveTo(20,Y(i));g.lineTo(400,Y(i));g.stroke();if(i!==0){g.fillText(String(i),X(i)+3,center+15);g.fillText(String(i),center+5,Y(i)-4)}}
   const phase1=2*Math.PI*p.f1*(p.xh/SPEED-clock),phase2=2*Math.PI*p.f2*((p.xh-p.d)/SPEED-clock);
-  const z1=[p.a1*Math.cos(phase1),p.a1*Math.sin(phase1)],z2=p.xh>=p.d?[p.a2*Math.cos(phase2),p.a2*Math.sin(phase2)]:[0,0];
+  const z1=[-p.a1*Math.cos(phase1),p.a1*Math.sin(phase1)],z2=p.xh>=p.d?[-p.a2*Math.cos(phase2),p.a2*Math.sin(phase2)]:[0,0];
   const sum=[z1[0]+z2[0],z1[1]+z2[1]];
   for(const [z,color,id] of [[z1,"#1976d2","show1"],[z2,"#e59b20","show2"],[sum,"#208c54","showSum"]]){
     if(!$(id).checked||Math.hypot(...z)<1e-8)continue;
