@@ -39,7 +39,7 @@ function waveAt(w,x,t,L){
   const s=w.dir===1?x:L-x;
   if(s>v*t+1e-10)return {active:false,y:0};
   const phase=2*Math.PI*s/w.lambda-2*Math.PI*w.f*t;
-  return {active:true,y:w.sign*w.A*Math.sin(phase)};
+  return {active:true,y:-w.sign*w.A*Math.sin(phase)};
 }
 function pause(){
   playing=false; lastFrame=null;
