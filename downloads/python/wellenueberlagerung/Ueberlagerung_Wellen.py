@@ -423,7 +423,7 @@ class WellenApp:
             aktiv = s <= strecke
             phase = k * s - omega * self.t
 
-        werte = vorzeichen * A * np.sin(phase)
+        werte = -vorzeichen * A * np.sin(phase)
         y_phys[aktiv] = werte[aktiv]
         y_plot[aktiv] = werte[aktiv]
 
