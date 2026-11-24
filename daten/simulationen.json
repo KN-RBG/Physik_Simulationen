@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "stand": "2026-11-22",
+  "stand": "2026-11-24",
   "hinweis": "Bestehende Physik-Simulationen sind derzeit G8 zugeordnet. Die Kursstufe wird einheitlich als „Kursstufe JG1/JG2“ geführt, ohne Trennung nach Jahrgangsstufen. Fachfremde Projekte bleiben ausgeblendet und ohne Zuordnung.",
   "simulationen": [
     {
@@ -147,7 +147,7 @@
       "id": "fourier",
       "titel": "Fourier-Transformation",
       "thema": "Mechanische Schwingungen und Wellen",
-      "beschreibung": "Fourier-Zerlegung periodischer Signale, Frequenzfilter und Rekonstruktion von Wortkonturen durch Epizykel",
+      "beschreibung": "Fourier-Zerlegung periodischer Signale, Frequenzspektrum, Frequenzfilter und einzelne harmonische Komponenten.",
       "klassenstufen": [
         "Kursstufe JG1/JG2"
       ],
@@ -158,10 +158,29 @@
       "html_url": "simulationen/fourier/index.html",
       "webprojekt_url": null,
       "status": "Browser-Version zur Erprobung",
-      "hinweis": "Zwei HTML-Ansichten: Fourier-1D-Signalanalyse mit Frequenzspektrum, Tief-/Hochpass und Einzelkomponenten; Epizykel-Demo für eingegebene Worte mit Konturrekonstruktion, Spektrum und x(t)/y(t). Beide ursprünglichen Python-Downloads vorhanden. Visuelle und Laufzeittests auf Zielgeräten ausstehend.",
+      "hinweis": "Eigenständige Fourier-1D-Signalanalyse in Python und HTML; Epizykel werden separat als Python-Simulation angeboten.",
       "python_public": false,
       "python_download_url": "downloads/python/fourier/Fourier_1D_GUI.py",
       "qr_url": "assets/qr/fourier.svg"
+    },
+    {
+      "id": "fourier-epizykel",
+      "titel": "Fourier-Epizykel – Rekonstruktion von Wortkonturen",
+      "thema": "Mechanische Schwingungen und Wellen",
+      "beschreibung": "Wortkonturen durch rotierende Zeiger und Fourier-Epizykel rekonstruieren. Nur als Python-Version verfügbar; keine Browser-Version. Benötigt Python mit Tkinter, NumPy und Matplotlib.",
+      "klassenstufen": [
+        "Kursstufe JG1/JG2"
+      ],
+      "bildungsgaenge": [
+        "G8"
+      ],
+      "python_url": "https://github.com/KN-RBG/Fourier_Transformation",
+      "html_url": null,
+      "webprojekt_url": null,
+      "status": "Nur Python-Version",
+      "hinweis": "Originaldatei Fourier_Demo_GUI.py; keine HTML-Version und kein QR-Code.",
+      "python_public": true,
+      "python_download_url": "downloads/python/fourier/Fourier_Demo_GUI.py"
     },
     {
       "id": "motorkennlinie",
