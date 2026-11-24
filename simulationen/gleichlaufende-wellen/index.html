@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gleichlaufende Wellen, Interferenz und Schwebung mit veränderlichem Senderabstand"><title>Gleichlaufende Wellen – Interferenz und Schwebung</title><link rel="stylesheet" href="style.css"><script src="simulation.js?v=20261121-snap" defer></script></head>
-<body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Gleichlaufende Wellen – Interferenz und Schwebung</h1><p>Zwei räumlich getrennte Sender, ein verschiebbarer Hörpunkt und ein veränderlicher Erregerabstand.</p></header>
-<main><section class="panel plot-panel"><h2>Zwei getrennte Sender – gleichlaufende Wellen</h2><canvas id="plot" width="1080" height="520" role="img" aria-label="Wellen 1 und 2, Überlagerung, Senderpositionen und Hörpunkt als animiertes Ortsdiagramm"></canvas>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gleichlaufende Wellen, Interferenz und Schwebung mit veränderlichem Gangunterschied"><title>Gleichlaufende Wellen – Interferenz und Schwebung</title><link rel="stylesheet" href="style.css?v=20261124-phasor"><script src="simulation.js?v=20261124-phasor" defer></script></head>
+<body><header><a href="../../index.html">← Zurück zur Simulationsübersicht</a><h1>Gleichlaufende Wellen – Interferenz und Schwebung</h1><p>Zwei räumlich getrennte Sender, ein verschiebbarer Hörpunkt und ein veränderlicher Gangunterschied.</p></header>
+<main><section class="panel plot-panel"><h2>Zwei getrennte Sender – gleichlaufende Wellen</h2><div class="diagrams"><div><canvas id="plot" width="1080" height="520" role="img" aria-label="Wellen 1 und 2, Überlagerung, Senderpositionen und Hörpunkt als animiertes Ortsdiagramm"></canvas></div><div class="phasor-panel"><h3>Zeigerdiagramm am Hörpunkt</h3><canvas id="phasor" width="420" height="420" role="img" aria-label="Rotierende Zeiger der beiden Schwingungen und ihrer Summe"></canvas></div></div>
 <div class="legend"><span class="w1">— Welle 1</span><span class="w2">— Welle 2</span><span class="sum">— Gesamtwelle</span><span class="hear">⋮ Hörpunkt</span></div>
 <p id="info" class="info">λ₁ = 1,00 λ₀ · λ₂ = 1,00 λ₀ · v = 0,60 λ₀/s · gleiche Frequenz</p>
 </section>
@@ -9,8 +9,8 @@
 <div class="settings">
 <fieldset><legend>Positionen</legend>
 <label for="listener">Hörpunkt x<sub>H</sub> / λ₀ <output id="listener-out">5,00</output></label><input id="listener" type="range" min="0" max="10" step="0.05" value="5">
-<label for="distance">Abstand d / λ₀ <output id="distance-out">0,25</output></label><input id="distance" type="range" min="0" max="2" step="0.01" value="0.25">
-<div class="distance-marks" aria-hidden="true"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0</span></div><p class="small">Feine Schritte von 0,01 λ₀; bei halben Wellenlängen rastet der Regler beim Loslassen exakt ein.</p>
+<label for="distance">Gangunterschied δ / λ₀ <output id="distance-out">0,25</output></label><input id="distance" type="range" min="0" max="3" step="0.01" value="0.25">
+<div class="distance-marks" aria-hidden="true"><span>0</span><span>0,5</span><span>1,0</span><span>1,5</span><span>2,0</span><span>2,5</span><span>3,0</span></div><p class="small">Feine Schritte von 0,01 λ₀; bei halben Wellenlängen rastet der Regler beim Loslassen exakt ein.</p>
 </fieldset>
 <fieldset><legend>Amplituden</legend>
 <label for="amp1">A₁ <output id="amp1-out">1,00</output></label><input id="amp1" type="range" min="0" max="2" step="0.05" value="1">
@@ -29,5 +29,5 @@
 <label for="volume">Lautstärke <output id="volume-out">0,25</output></label><input id="volume" type="range" min="0" max="1" step="0.01" value="0.25"><p id="sound-status" class="small" aria-live="polite">Ton: aus</p></fieldset>
 </div>
 <div class="actions"><button id="play" type="button">⏸ Pause</button><button id="reset" type="button">↺ Reset</button><span id="status" aria-live="polite">Simulation läuft</span></div>
-<p class="small">Die Abstände beziehen sich auf die Referenzwellenlänge λ₀. Für f₁ = f₂ = 0,60 Hz gilt λ₁ = λ₂ = λ₀. Der Ton verwendet einen hörbaren 400-Hz-Träger, dessen Interferenz dem Modell am Hörpunkt folgt.</p>
+<p class="small">Der Gangunterschied bezieht sich auf die Referenzwellenlänge λ₀. Für f₁ = f₂ = 0,60 Hz gilt λ₁ = λ₂ = λ₀. Der Ton verwendet einen hörbaren 400-Hz-Träger, dessen Interferenz dem Modell am Hörpunkt folgt.</p>
 </section></main><footer><a href="../../downloads/python/gleichlaufende-wellen/gleichlaufende_wellen.py" download>Python-Version herunterladen</a> · <a href="../../index.html">Alle Simulationen</a></footer></body></html>
